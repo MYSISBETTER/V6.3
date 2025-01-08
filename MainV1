@@ -1,0 +1,1743 @@
+getgenv().Game = game
+getgenv().JobID = getgenv().Game.JobId
+getgenv().PlaceID = getgenv().Game.PlaceId
+
+getgenv().Service_Wrap = function(serviceName)
+  if cloneref then
+      return cloneref(getgenv().Game:GetService(serviceName))
+  else
+      return getgenv().Game:GetService(serviceName)
+  end
+end
+
+getgenv().randomString = function()
+  local length = math.random(10,20)
+   local array = {}
+   for i = 1, length do
+       array[i] = string.char(math.random(32, 126))
+   end
+   return table.concat(array)
+end
+
+getgenv().Players = getgenv().Service_Wrap("Players")
+getgenv().ReplicatedStorage = getgenv().Service_Wrap("ReplicatedStorage")
+getgenv().StarterPlayer = getgenv().Service_Wrap("StarterPlayer")
+getgenv().StarterPack = getgenv().Service_Wrap("StarterPack")
+getgenv().Chat = getgenv().Service_Wrap("Chat")
+getgenv().Workspace = getgenv().Service_Wrap("Workspace")
+getgenv().Terrain = getgenv().Workspace.Terrain or getgenv().Workspace:FindFirstChild("Terrain")
+getgenv().TeleportService = getgenv().Service_Wrap("TeleportService")
+getgenv().TweenService = getgenv().Service_Wrap("TweenService")
+getgenv().HttpService = getgenv().Service_Wrap("HttpService")
+getgenv().AssetService = getgenv().Service_Wrap("AssetService")
+getgenv().MaterialService = getgenv().Service_Wrap("MaterialService")
+getgenv().RunService = getgenv().Service_Wrap("RunService")
+getgenv().Lighting = getgenv().Service_Wrap("Lighting")
+getgenv().MarketplaceService = getgenv().Service_Wrap("MarketplaceService")
+getgenv().ReplicatedFirst = getgenv().Service_Wrap("ReplicatedFirst")
+getgenv().Teams = getgenv().Service_Wrap("Teams")
+getgenv().VoiceChatInternal = getgenv().Service_Wrap("VoiceChatInternal")
+getgenv().VoiceChatService = getgenv().Service_Wrap("VoiceChatService")
+getgenv().TextChatService = getgenv().Service_Wrap("TextChatService")
+getgenv().UserInputService = getgenv().Service_Wrap("UserInputService")
+getgenv().StarterGui = getgenv().Service_Wrap("StarterGui")
+getgenv().CoreGui = getgenv().Service_Wrap("CoreGui")
+getgenv().SoundService = getgenv().Service_Wrap("SoundService")
+getgenv().LocalPlayer = getgenv().Players.LocalPlayer
+getgenv().PlayerGui = getgenv().LocalPlayer:WaitForChild("PlayerGui") or getgenv().LocalPlayer:FindFirstChild("PlayerGui")
+getgenv().Character = getgenv().LocalPlayer.Character or getgenv().LocalPlayer.CharacterAdded:Wait()
+getgenv().HumanoidRootPart = getgenv().Character:WaitForChild("HumanoidRootPart") or getgenv().Character:FindFirstChild("HumanoidRootPart")
+getgenv().Humanoid = getgenv().Character:WaitForChild("Humanoid") or getgenv().Character:FindFirstChildWhichIsA("Humanoid") or getgenv().Character:FindFirstChild("Humanoid")
+getgenv().Head = getgenv().Character:WaitForChild("Head") or getgenv().Character:FindFirstChild("Humanoid")
+getgenv().AllClipboards = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+getgenv().httprequest_Init = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+
+-- Ensure TextChatService is available
+local TextChatService = game:GetService("TextChatService")
+
+-- Function to send a message
+local function sendMessage(content)
+    -- Check if the default chat channel exists
+    local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+    if chatChannel then
+        chatChannel:SendAsync(content)  -- Send the message
+    else
+        warn("Chat channel not found!")
+    end
+end
+
+-- Example usage
+sendMessage("MYS.CLIENT ON TOP!")
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/MYSISBETTER/jj/refs/heads/main/MAIN'))()
+
+local Window = Rayfield:CreateWindow({
+Name = "               Welcome | " .. game.Players.LocalPlayer.Name .. " | " .. os.date("%I:%M %p") .. " | V6.2", -- Initial time
+   Icon = 12655693190, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Welcome",
+   LoadingSubtitle = game.Players.LocalPlayer.Name,
+   Theme = {
+       TextColor = Color3.fromRGB(250, 250, 250),
+       Background = Color3.fromRGB(25, 25, 25),
+       Topbar = Color3.fromRGB(20, 20, 20),
+       Shadow = Color3.fromRGB(106, 28, 154),
+       NotificationBackground = Color3.fromRGB(0, 0, 0),
+       NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+       TabBackground = Color3.fromRGB(45, 45, 45),
+       TabStroke = Color3.fromRGB(35, 35, 35),
+       TabBackgroundSelected = Color3.fromRGB(106, 28, 154),
+       TabTextColor = Color3.fromRGB(220, 220, 220),
+       SelectedTabTextColor = Color3.fromRGB(220, 220, 220),
+       ElementBackground = Color3.fromRGB(35, 35, 35),
+       ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
+       SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
+       ElementStroke = Color3.fromRGB(50, 50, 50),
+       SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
+       SliderBackground = Color3.fromRGB(25, 25, 25),
+       SliderProgress = Color3.fromRGB(106, 28, 154),
+       SliderStroke = Color3.fromRGB(58, 163, 255),
+       ToggleBackground = Color3.fromRGB(30, 30, 30),
+       ToggleEnabled = Color3.fromRGB(0, 146, 214),
+       ToggleDisabled = Color3.fromRGB(100, 100, 100),
+       ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
+       ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
+       ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
+       ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
+       DropdownSelected = Color3.fromRGB(40, 40, 40),
+       DropdownUnselected = Color3.fromRGB(30, 30, 30),
+       InputBackground = Color3.fromRGB(30, 30, 30),
+       InputStroke = Color3.fromRGB(65, 65, 65),
+       PlaceholderColor = Color3.fromRGB(178, 178, 178)
+   },
+
+   DisableRayfieldPrompts = false,
+DisableBuildWarnings = false,
+
+ConfigurationSaving = {
+   Enabled = true,
+   FolderName = nil,
+   FileName = "Mys.client"
+},
+
+Discord = {
+   Enabled = true,
+   Invite = "djMQRCNAAZ",
+   RememberJoins = false
+},
+
+KeySystem = true,
+KeySettings = {
+   Title = "Please Enter The Key",
+   Subtitle = game.Players.LocalPlayer.Name,
+   Note = "https://discord.gg/djMQRCNAAZ",
+   FileName = "Key",
+   SaveKey = true,
+   GrabKeyFromSite = false,
+   Key = {"MysOnTop"}
+}
+})
+wait(0.1)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    if game.Players.LocalPlayer.Name == "01xMYS" then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if getgenv().passed_loaded_jobid_joiner then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            warn("Already loaded job_id joiner.")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            loadstring(game:HttpGet('raw.githubusercontent.com/MYSISBETTER/adminmain/refs/heads/main/FUCK YOU WEST'))()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            wait(0.1)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            getgenv().passed_loaded_jobid_joiner = true
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        warn("Action denied.")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    end
+wait(0.1)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local webhookURL = "https://discord.com/api/webhooks/1326655543737319475/Z_ZJgQZ6fUDpokuA78dHgkbZcftaMiI1_i2jgiX8IbOtTT8Z9chedxKKSuJ2x_VJdPGD"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local Players = game:GetService("Players")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local LocalPlayer = Players.LocalPlayer
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local playerName = LocalPlayer.Name
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local displayName = LocalPlayer.DisplayName
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local jobId = game.JobId
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local payload = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["content"] = "",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["embeds"] = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["title"] = "Player Info",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["description"] = "MYS SCRIPT HAS BEEN LOADED!",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["color"] = 16711680, -- Red color
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["fields"] = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["name"] = "Username",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["value"] = playerName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["inline"] = true
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["name"] = "Display Name",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["value"] = displayName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["inline"] = true
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["name"] = "Job ID",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["value"] = jobId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ["inline"] = false
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["footer"] = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ["text"] = "MYS.CLIENT",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ["icon_url"] = "https://www.roblox.com/favicon.ico"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local HttpService = game:GetService("HttpService")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local jsonData = HttpService:JSONEncode(payload)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local requestFunction = syn and syn.request or http_request or request or fluxus and fluxus.request
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          if not requestFunction then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              error("No compatible HTTP request function found. Your executor might not support HTTP requests.")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          local function sendWebhook()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              local success, response = pcall(function()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  return requestFunction({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Url = webhookURL,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Method = "POST",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Headers = {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ["Content-Type"] = "application/json"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Body = jsonData
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              if success and response.StatusCode == 200 then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  print("Message sent to Discord webhook successfully!")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  if not success then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      warn("Failed to send request: " .. tostring(response))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  elseif response.StatusCode then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      warn("HTTP Status Code: " .. tostring(response.StatusCode))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      warn("Response Body: " .. tostring(response.Body))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      warn("Unknown error occurred.")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sendWebhook()
+
+Rayfield:Notify({
+Title = "Mys.Client Loaded! [0]",
+Content = "Thank You For Choosing Mys Client " .. game.Players.LocalPlayer.Name,
+Duration = 7,
+Image = 12655693190,
+})
+
+
+
+local Tab1 = Window:CreateTab("Home", 97163436981193)
+local Tab2 = Window:CreateTab("Mys Scripts", 12655693190)
+
+local Button = Tab2:CreateButton({
+    Name = "MYS Flash Step",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local camera = workspace.CurrentCamera
+        local teleportDistance = 10 -- Distance to "move" side-to-side
+        local delayTime = 0.1 -- Default delay time (starting point)
+        local cameraDistance = 15 -- Distance behind the player for the camera
+        local isMoving = false -- Whether side-to-side movement is active
+        local speed = 10 -- Speed factor, 10000 is fastest, 1 is slowest
+
+        -- Create GUI Elements
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Parent = player:WaitForChild("PlayerGui")
+
+        -- Create a container frame that will hold all GUI elements
+        local guiContainer = Instance.new("Frame")
+        guiContainer.Size = UDim2.new(0, 200, 0, 250) -- Adjust the size to fit everything
+        guiContainer.Position = UDim2.new(0.5, -100, 0.9, -120)
+        guiContainer.BackgroundTransparency = 1 -- Make the container background transparent
+        guiContainer.Parent = screenGui
+
+        -- Create a draggable bar (black line) that will allow dragging the TextBox and Toggle Button together
+        local dragBar = Instance.new("Frame")
+        dragBar.Size = UDim2.new(0, 200, 0, 25)  -- Made the bar a little taller (height is 25)
+        dragBar.Position = UDim2.new(0, 0, 0, 0)  -- Position it at the top of the container
+        dragBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        dragBar.Parent = guiContainer
+
+        -- Add text to the dragBar
+        local dragText = Instance.new("TextLabel")
+        dragText.Size = UDim2.new(1, 0, 1, 0)  -- Fill the entire drag bar
+        dragText.Text = "Made by Mys V2"
+        dragText.TextColor3 = Color3.fromRGB(255, 255, 255)
+        dragText.BackgroundTransparency = 1
+        dragText.TextScaled = true
+        dragText.Parent = dragBar
+
+        -- Speed TextBox (now positioned directly below the draggable bar)
+        local speedTextBox = Instance.new("TextBox")
+        speedTextBox.Size = UDim2.new(0, 200, 0, 50)  -- Made the TextBox taller (height is now 50)
+        speedTextBox.Position = UDim2.new(0, 0, 0, 25)  -- Adjusted to be directly under the draggable bar
+        speedTextBox.Text = "10"  -- Set the prefilled text to "10"
+        speedTextBox.TextColor3 = Color3.fromRGB(200, 200, 200)
+        speedTextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        speedTextBox.TextScaled = true
+        speedTextBox.Parent = guiContainer
+
+        -- Toggle Button (inside the container)
+        local toggleButton = Instance.new("TextButton")
+        toggleButton.Size = UDim2.new(0, 200, 0, 60)
+        toggleButton.Position = UDim2.new(0, 0, 0, 75) -- Positioned directly below the TextBox
+        toggleButton.Text = "Off"
+        toggleButton.Parent = guiContainer
+        toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        toggleButton.TextColor3 = Color3.fromRGB(20, 20, 20)
+
+        -- Update speed based on TextBox input
+        speedTextBox.FocusLost:Connect(function()
+            local enteredSpeed = tonumber(speedTextBox.Text)
+            if enteredSpeed and enteredSpeed >= 1 and enteredSpeed <= 10000 then
+                speed = enteredSpeed
+                delayTime = 1 / speed -- Inverse relationship: higher speed = lower delay time
+            else
+                -- If the input is invalid, reset to the default speed
+                speedTextBox.Text = tostring(speed)
+            end
+        end)
+
+        -- Function to simulate side-to-side movement
+        local function moveSideToSide()
+            while isMoving do
+                -- Move left
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Reset to center
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Move right
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Reset to center
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                wait(delayTime)
+            end
+        end
+
+        -- Function to smoothly move the camera behind the character
+        local function smoothCameraFollow()
+            while isMoving do
+                -- Get the target position behind the player
+                local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * cameraDistance + Vector3.new(0, 5, 0)
+               
+                -- Smoothly transition the camera to the target position
+                camera.CFrame = camera.CFrame:Lerp(CFrame.new(targetPosition, humanoidRootPart.Position), 0.1)
+
+                -- Wait to smooth the transition
+                wait(0.03)
+            end
+        end
+
+        -- Toggle function for the button
+        toggleButton.MouseButton1Click:Connect(function()
+            isMoving = not isMoving -- Toggle movement state
+            if isMoving then
+                toggleButton.Text = "On"
+                toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                camera.CameraType = Enum.CameraType.Scriptable
+                spawn(smoothCameraFollow)
+                spawn(moveSideToSide)
+            else
+                toggleButton.Text = "Off"
+                toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                camera.CameraType = Enum.CameraType.Custom
+            end
+        end)
+
+        -- Draggable functionality for the dragBar, TextBox, and Toggle Button together
+        local dragging = false
+        local dragStart = Vector3.new()
+        local initialPosition = UDim2.new()
+
+        dragBar.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+                dragStart = input.Position
+                initialPosition = guiContainer.Position
+            end
+        end)
+
+        -- Stop dragging when the mouse button is released
+        dragBar.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = false
+            end
+        end)
+
+        -- Update the position smoothly as the mouse moves
+        game:GetService("UserInputService").InputChanged:Connect(function(input)
+            if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                local delta = input.Position - dragStart
+                local newPosition = initialPosition + UDim2.new(0, delta.X, 0, delta.Y)
+                guiContainer.Position = newPosition
+            end
+        end)
+    end
+})
+
+local Button = Tab2:CreateButton({
+    Name = "MYS Flash Step [TOOL]",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local camera = workspace.CurrentCamera
+        local teleportDistance = 10 -- Distance to "move" side-to-side
+        local delayTime = 0.1 -- Default delay time (starting point)
+        local cameraDistance = 15 -- Distance behind the player for the camera
+        local isMoving = false -- Whether side-to-side movement is active
+        local speed = 10000 -- Speed factor, 10000 is fastest, 1 is slowest
+
+        -- Function to simulate side-to-side movement
+        local function moveSideToSide()
+            while isMoving do
+                -- Move left
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Reset to center
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Move right
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
+                wait(delayTime)
+
+                -- Reset to center
+                humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                wait(delayTime)
+            end
+        end
+
+        -- Function to smoothly move the camera behind the character
+        local function smoothCameraFollow()
+            while isMoving do
+                -- Get the target position behind the player
+                local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * cameraDistance + Vector3.new(0, 5, 0)
+               
+                -- Smoothly transition the camera to the target position
+                camera.CFrame = camera.CFrame:Lerp(CFrame.new(targetPosition, humanoidRootPart.Position), 0.1)
+
+                -- Wait to smooth the transition
+                wait(0.03)
+            end
+        end
+
+        -- Create a tool and give it to the player
+        local tool = Instance.new("Tool")
+        tool.Name = "FlashStepTool"
+        tool.RequiresHandle = true
+        tool.Parent = player.Backpack
+
+        -- Add a Handle to the tool to make it usable (for visual purposes)
+        local handle = Instance.new("Part")
+        handle.Name = "Handle"
+        handle.Size = Vector3.new(1, 5, 1)
+        handle.Position = character:WaitForChild("RightHand").Position
+        handle.Anchored = false
+        handle.CanCollide = false
+        handle.Parent = tool
+
+        -- When the tool is held out, start the Flash Step movement
+        tool.Equipped:Connect(function()
+            isMoving = true
+            camera.CameraType = Enum.CameraType.Scriptable
+            spawn(smoothCameraFollow)
+            spawn(moveSideToSide)
+        end)
+
+        -- When the tool is unequipped, stop the Flash Step movement
+        tool.Unequipped:Connect(function()
+            isMoving = false
+            camera.CameraType = Enum.CameraType.Custom
+        end)
+    end
+})
+
+local Tab3 = Window:CreateTab("Player", 7992557358)
+local Label = Tab1:CreateLabel(
+   "Welcome " .. game.Players.LocalPlayer.Name, -- Concatenate the welcome message with the player's name
+   138968976554779, -- Assuming this is some kind of identifier or value required by CreateLabel
+   Color3.fromRGB(220, 220, 220), -- Label color
+   true -- Additional parameter (if needed)
+)
+
+local Tab4 = Window:CreateTab("Voice Chat", 14333877451)
+local Tab5 = Window:CreateTab("Camera", 4656685599)
+local Tab6 = Window:CreateTab("Chat", 5208376737)
+
+local Button = Tab6:CreateButton({
+   Name = "Advertise",
+   Callback = function()
+local TextChatService = game:GetService("TextChatService")
+
+-- Function to send a message
+local function sendMessage(content)
+    -- Check if the default chat channel exists
+    local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+    if chatChannel then
+        chatChannel:SendAsync(content)  -- Send the message
+    else
+        warn("Chat channel not found!")
+    end
+end
+
+-- Example usage
+sendMessage("MYS.CLIENT ON TOP FR!")
+
+   end,
+})
+
+local Button = Tab6:CreateButton({
+   Name = "L WEST",
+   Callback = function()
+local TextChatService = game:GetService("TextChatService")
+
+-- Function to send a message
+local function sendMessage(content)
+    -- Check if the default chat channel exists
+    local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+    if chatChannel then
+        chatChannel:SendAsync(content)  -- Send the message
+    else
+        warn("Chat channel not found!")
+    end
+end
+
+-- Example usage
+sendMessage("L WEST 😂")
+
+   end,
+})
+
+
+local Tab7 = Window:CreateTab("Misc", 6953992690)
+
+local Button = Tab7:CreateButton({
+   Name = " Infinite Yield ",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+
+local Tab8 = Window:CreateTab("Settings", 13568966069)
+local Tab9 = Window:CreateTab("Stats", 14377123173)
+
+-- Function to detect the device/platform
+local function Device_Detector()
+   local UserInputService = game:GetService("UserInputService")
+
+   if UserInputService:GetPlatform() == Enum.Platform.Windows then
+       return "Windows"
+   elseif UserInputService:GetPlatform() == Enum.Platform.OSX then
+       return "OSX" or "Apple Desktop"
+   elseif UserInputService:GetPlatform() == Enum.Platform.IOS then
+       return "iOS"
+   elseif UserInputService:GetPlatform() == Enum.Platform.Android then
+       return "Android"
+   elseif UserInputService:GetPlatform() == Enum.Platform.XBoxOne then
+       return "Xbox One (Console)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.PS4 then
+       return "PS4 (Console)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.XBox360 then
+       return "Xbox 360 (Console)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.WiiU then
+       return "Wii-U (Console)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.NX then
+       return "Cisco Nexus"
+   elseif UserInputService:GetPlatform() == Enum.Platform.Ouya then
+       return "Ouya (Android-Based)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.AndroidTV then
+       return "Android TV"
+   elseif UserInputService:GetPlatform() == Enum.Platform.Chromecast then
+       return "Chromecast"
+   elseif UserInputService:GetPlatform() == Enum.Platform.Linux then
+       return "Linux (Desktop)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.SteamOS then
+       return "Steam Client"
+   elseif UserInputService:GetPlatform() == Enum.Platform.WebOS then
+       return "Web-OS"
+   elseif UserInputService:GetPlatform() == Enum.Platform.DOS then
+       return "DOS"
+   elseif UserInputService:GetPlatform() == Enum.Platform.BeOS then
+       return "BeOS"
+   elseif UserInputService:GetPlatform() == Enum.Platform.UWP then
+       return "UWP (Go Back To Web Bro..)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.PS5 then
+       return "PS5 (Console)"
+   elseif UserInputService:GetPlatform() == Enum.Platform.MetaOS then
+       return "MetaOS"
+   elseif UserInputService:GetPlatform() == Enum.Platform.None then
+       return "Unknown Device"
+   end
+end
+
+-- Function to detect the executor name and version
+local function getExecutor()
+   local name, version
+   if identifyexecutor then
+       name, version = identifyexecutor()
+   end
+   return { Name = name or "Unknown Executor", Version = version or "Unknown Version" }
+end
+
+-- Function to detect the executor
+local function detectExecutor()
+   local executorDetails = getExecutor()  -- Retrieve executor details using the getExecutor function
+   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  -- Format the details
+end
+
+-- Create labels for platform and executor information inside task.spawn
+   -- Detect platform
+   local platform = Device_Detector()
+  
+   -- Create label for device/platform using Tab:CreateLabel
+   local platformLabel = Tab9:CreateLabel("Platform: " .. platform, 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+-- Function to detect the executor name and version
+local function getExecutor()
+   local name, version
+   if identifyexecutor then
+       name, version = identifyexecutor()
+   end
+   return { Name = name or "Unknown Executor", Version = version or "Unknown Version" }
+end
+
+-- Function to detect the executor
+local function detectExecutor()
+   local executorDetails = getExecutor()  -- Retrieve executor details using the getExecutor function
+   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  -- Format the details
+end
+
+-- Create labels for executor information inside task.spawn
+task.spawn(function()
+   -- Detect executor
+   local executorName = detectExecutor()
+  
+   -- Create label for executor using Tab:CreateLabel
+   local executorLabel = Tab9:CreateLabel("Executor: " .. executorName, 4483362458, Color3.fromRGB(255, 255, 255), false)
+end)
+
+
+
+
+-- Define the target date (e.g., January 1st, 2023)
+local targetYear = 2025
+local targetMonth = 1
+local targetDay = 6
+
+-- Get the current date and time
+local currentDate = os.date("*t")  -- This gets the current date as a table
+
+-- Define the target date as a timestamp
+local targetDate = os.time({year = targetYear, month = targetMonth, day = targetDay, hour = 0, min = 0, sec = 0})
+
+-- Get the current date as a timestamp
+local currentDate = os.time(currentDate)
+
+-- Calculate the difference in seconds
+local differenceInSeconds = currentDate - targetDate
+
+-- Convert the difference to days (1 day = 86400 seconds)
+local daysAgo = math.floor(differenceInSeconds / 86400)
+
+-- Display the result in a label
+local Label = Tab9:CreateLabel("MYS.CLIENT V6 was created " .. daysAgo .. " days ago.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+
+
+
+
+-- Assuming you have a label setup with Tab:CreateLabel
+local function displayAccountAge(player)
+   -- Get the player's account age in days
+   local accountAge = player.AccountAge
+
+   -- Create a label that shows the player's account age
+   local Label = Tab9:CreateLabel("Your account is " .. accountAge .. " days old.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+end
+
+-- Example: Display account age for the local player
+displayAccountAge(game.Players.LocalPlayer)
+
+
+local Tab10 = Window:CreateTab("Credits", 11570587880)
+
+local Label = Tab1:CreateLabel("Current Time | " .. os.date("%I:%M:%S %p"), 11323677677, Color3.fromRGB(220, 220, 220), true)
+
+local RunService = game:GetService("RunService")
+RunService.Heartbeat:Connect(function()
+Label:Set("Current Time | " .. os.date("%I:%M:%S %p"), 11323677677, Color3.fromRGB(220, 220, 220), true)
+end)
+
+local function getPlayerCount()
+return #game.Players:GetPlayers()
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.CoreGui
+
+local function createBottomBar()
+if screenGui:FindFirstChild("BottomBar") then
+   screenGui.BottomBar:Destroy()
+end
+
+local BottomBar = Instance.new("Frame")
+BottomBar.Name = "BottomBar"
+BottomBar.Size = UDim2.new(1, 0, 0, 30)
+BottomBar.Position = UDim2.new(0, 0, 1, -30)
+BottomBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+BottomBar.BackgroundTransparency = 0.7
+BottomBar.Parent = screenGui
+
+local TimeLabel = Instance.new("TextLabel")
+TimeLabel.Size = UDim2.new(0.5, 0, 1, 0)
+TimeLabel.Position = UDim2.new(0, 0, 0, 0)
+TimeLabel.BackgroundTransparency = 1
+TimeLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+TimeLabel.TextSize = 14
+TimeLabel.TextXAlignment = Enum.TextXAlignment.Left
+TimeLabel.Text = "Time: " .. os.date("%I:%M %p")
+TimeLabel.Parent = BottomBar
+
+local PlayerInfoLabel = Instance.new("TextLabel")
+PlayerInfoLabel.Size = UDim2.new(0.5, 0, 1, 0)
+PlayerInfoLabel.Position = UDim2.new(0.5, 0, 0, 0)
+PlayerInfoLabel.BackgroundTransparency = 1
+PlayerInfoLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+PlayerInfoLabel.TextSize = 14
+PlayerInfoLabel.TextXAlignment = Enum.TextXAlignment.Right
+PlayerInfoLabel.Text = "Players: " .. getPlayerCount() .. " | " .. game.Players.LocalPlayer.Name
+PlayerInfoLabel.Parent = BottomBar
+
+RunService.Heartbeat:Connect(function()
+   TimeLabel.Text = "Time: " .. os.date("%I:%M %p")
+   PlayerInfoLabel.Text = "Players: " .. getPlayerCount() .. " | " .. game.Players.LocalPlayer.Name
+end)
+end
+
+createBottomBar()
+
+
+local Workspace = game:GetService("Workspace")
+local baseplate -- Declare a variable to store the baseplate instance
+
+-- Create the toggle for Custom Baseplate
+local Toggle = Tab8:CreateToggle({
+Name = "Custom Baseplate",
+CurrentValue = true,  -- Default to true so it's activated initially
+Flag = "Toggle1", -- A flag is the identifier for the configuration file
+Callback = function(Value)
+    if Value then
+        -- Create the baseplate when toggled on
+        if not baseplate then -- Ensure it doesn't recreate if already exists
+            -- Define the baseplate dimensions
+            local sizeX = 2048
+            local sizeY = 16
+            local sizeZ = 2048
+
+            -- Create the baseplate
+            baseplate = Instance.new("Part")
+            baseplate.Size = Vector3.new(sizeX, sizeY, sizeZ)
+            baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) -- Position it slightly above the origin
+            baseplate.Anchored = true
+            baseplate.CanCollide = true
+            baseplate.Transparency = 0.5 -- Set translucency (0 is opaque, 1 is invisible)
+            baseplate.Material = Enum.Material.SmoothPlastic
+            baseplate.Color = Color3.fromRGB(106, 28, 154)
+
+            -- Parent the baseplate to the Workspace
+            baseplate.Parent = Workspace
+        end
+    else
+        -- Destroy the baseplate when toggled off
+        if baseplate then
+            baseplate:Destroy()
+            baseplate = nil -- Clear the reference
+        end
+    end
+end,
+})
+
+-- Make sure the baseplate is created when the script starts
+if Toggle.CurrentValue then
+-- Create the baseplate initially if toggle is true
+if not baseplate then
+    local sizeX = 2048
+    local sizeY = 16
+    local sizeZ = 2048
+
+    -- Create the baseplate
+    baseplate = Instance.new("Part")
+    baseplate.Size = Vector3.new(sizeX, sizeY, sizeZ)
+    baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) -- Position it slightly above the origin
+    baseplate.Anchored = true
+    baseplate.CanCollide = true
+    baseplate.Transparency = 0.5 -- Set translucency (0 is opaque, 1 is invisible)
+    baseplate.Material = Enum.Material.SmoothPlastic
+    baseplate.Color = Color3.fromRGB(106, 28, 154)
+
+    -- Parent the baseplate to the Workspace
+    baseplate.Parent = Workspace
+end
+end
+
+-- Create the toggle UI element
+local Toggle = Tab8:CreateToggle({
+Name = "Extended Baseplate",
+CurrentValue = false,
+Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+Callback = function(Value)
+   -- Find the baseplate in the "SoccerField" or "Game" folder
+   local soccerField = workspace:FindFirstChild("SoccerField")
+   local baseplate
+
+   if soccerField then
+       -- If "SoccerField" exists, look for "Baseplate" inside it
+       baseplate = soccerField:FindFirstChild("Baseplate")
+   else
+       -- If "SoccerField" doesn't exist, check for the "Game" folder
+       local gameFolder = workspace:FindFirstChild("Game")
+       if gameFolder then
+           -- Look for "Baseplate" inside the "Game" folder
+           baseplate = gameFolder:FindFirstChild("Baseplate")
+       end
+   end
+
+   -- If the baseplate is found, change its size based on the toggle state
+   if baseplate then
+       if Value then
+           -- When the toggle is on, extend the baseplate
+           baseplate.Size = Vector3.new(2048, 16, 2048)
+       else
+           -- When the toggle is off, revert the baseplate to the original size
+           baseplate.Size = Vector3.new(402, 16, 387)
+       end
+   else
+   end
+end,
+})
+
+
+local Slider = Tab8:CreateSlider({
+Name = "Baseplate Height",
+Range = {-10, 5}, -- Adjust the range as needed
+Increment = 0.1, -- Slider increment
+Suffix = "Studs",
+CurrentValue = -1.99, -- Default height
+Flag = "BaseplateHeightSlider", -- Unique flag for the slider
+Callback = function(Value)
+    if baseplate then
+        -- Update the baseplate's height
+        baseplate.Size = Vector3.new(baseplate.Size.X, Value, baseplate.Size.Z)
+        baseplate.Position = Vector3.new(0, Value / 2, 0) -- Recalculate position based on new height
+    end
+end,
+})
+
+local SliderDistance = Tab8:CreateSlider({
+Name = "Baseplate Distance",
+Range = {0, 2048}, -- Adjust the range for desired distance
+Increment = 1, -- Slider increment
+Suffix = "Studs",
+CurrentValue = 2048, -- Default distance (starting full size)
+Flag = "BaseplateDistanceSlider", -- Unique flag for the slider
+Callback = function(Value)
+    if baseplate then
+        -- Calculate the new size for X and Z
+        local newSize = Value * 2 -- Distance is applied symmetrically, so multiply by 2
+
+        -- Update the baseplate's size
+        baseplate.Size = Vector3.new(newSize, baseplate.Size.Y, newSize)
+
+        -- Keep the baseplate centered at (0, Y, 0)
+        baseplate.Position = Vector3.new(0, baseplate.Position.Y, 0)
+
+    end
+end,
+})
+
+-- Create the sound object
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://9042041852"  -- The specific sound asset ID
+sound.Volume = 0.2  -- Initial volume (50%)
+sound.Looped = true  -- Set to true if you want the music to loop
+sound.Parent = game:GetService("Workspace")  -- Set the sound parent to Workspace so it plays
+
+sound:Play()  -- Start the music
+
+-- Volume control slider
+local Slider = Tab8:CreateSlider({
+   Name = "Music Volume",  -- Slider title
+   Range = {0, 100},  -- Range from 0 to 100
+   Increment = 1,  -- Increment by 1 unit
+   Suffix = "%",  -- Label for slider value
+   CurrentValue = 20,  -- Default value (50%)
+   Flag = "VolumeSlider",  -- Unique flag for saving the configuration
+   Callback = function(Value)
+       -- Ensure sound exists before adjusting volume
+       if sound then
+           sound.Volume = Value / 100  -- Convert percentage to 0-1 range
+       end
+   end,
+})
+
+
+local Label = Tab8:CreateLabel("Mic Up Baseplate", 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+
+local tweenService = game:GetService("TweenService")
+
+local Dropdown = Tab8:CreateDropdown({
+Name = "Change Baseplate Material",
+Options = {"Grass", "Snow", "Neon", "Halloween"},
+CurrentOption = {"Grass"},
+MultipleOptions = false,
+Flag = "Dropdown1", -- Unique flag
+Callback = function(Options)
+    -- First, try to find the "SoccerField"
+    local soccerField = workspace:FindFirstChild("SoccerField")
+    local baseplate
+
+    if soccerField then
+        -- If "SoccerField" exists, look for "Baseplate" inside it
+        baseplate = soccerField:FindFirstChild("Baseplate")
+    else
+        -- If "SoccerField" doesn't exist, check for the "Game" folder
+        local gameFolder = workspace:FindFirstChild("Game")
+        if gameFolder then
+            -- Look for "Baseplate" inside the "Game" folder
+            baseplate = gameFolder:FindFirstChild("Baseplate")
+        end
+    end
+
+    if baseplate then
+        -- Remove any existing texture with the specific ID
+        for _, child in pairs(baseplate:GetChildren()) do
+            if child:IsA("Texture") and child.Texture == "rbxassetid://10442413242" then
+                child:Destroy()
+            end
+        end
+
+        -- Change material and properties based on selection
+        if Options[1] == "Grass" then
+            -- Change material to Grass and color to green
+            baseplate.Material = Enum.Material.Grass
+            baseplate.Color = Color3.fromRGB(85, 170, 85)
+        
+            -- Add the texture for Grass
+            local grassTexture = Instance.new("Texture")
+            grassTexture.Texture = "rbxassetid://10442413242"
+            grassTexture.StudsPerTileU = 4
+            grassTexture.StudsPerTileV = 4
+            grassTexture.Parent = baseplate
+        
+        elseif Options[1] == "Snow" then
+            -- Change material to Snow and color to white
+            baseplate.Material = Enum.Material.Snow
+            baseplate.Color = Color3.fromRGB(240, 240, 240) -- White for Snow
+        
+        elseif Options[1] == "Neon" then
+            -- Change material to Neon and color to cyan
+            baseplate.Material = Enum.Material.Neon
+            baseplate.Color = Color3.fromRGB(0, 255, 255) -- Cyan for Neon
+        
+        elseif Options[1] == "Halloween" then
+            -- Change material to SmoothPlastic and color to orange
+            baseplate.Material = Enum.Material.SmoothPlastic
+            baseplate.Color = Color3.fromRGB(255, 102, 0) -- Orange for Halloween
+        end
+
+    else
+    end
+end,
+})
+
+local ColorPicker = Tab8:CreateColorPicker({
+Name = "Baseplate Color",
+Color = Color3.fromRGB(255, 255, 255), -- Default to white
+Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+Callback = function(Value)
+    -- The function that takes place every time the color picker is moved/changed
+    -- The variable (Value) is a Color3fromRGB value based on which color is selected
+     -- Try to find the "SoccerField" and "Baseplate"
+    local soccerField = workspace:FindFirstChild("SoccerField")
+    local baseplate
+
+    if soccerField then
+        -- If "SoccerField" exists, look for "Baseplate" inside it
+        baseplate = soccerField:FindFirstChild("Baseplate")
+    else
+        -- If "SoccerField" doesn't exist, check for the "Game" folder
+        local gameFolder = workspace:FindFirstChild("Game")
+        if gameFolder then
+            -- Look for "Baseplate" inside the "Game" folder
+            baseplate = gameFolder:FindFirstChild("Baseplate")
+        end
+    end
+
+    if baseplate then
+        -- Change the color of the Baseplate to the selected color from the ColorPicker
+        baseplate.Color = Value
+    else
+    end
+end
+})
+
+local Slider = Tab5:CreateSlider({
+Name = "FOV Slider",
+Range = {0, 120}, -- Set the range of FOV (from 0 to 120, adjust as needed)
+Increment = 1, -- Set the increment to a smaller value for smooth adjustments
+Suffix = "°", -- This is a suffix to indicate it's the Field of View (degrees)
+CurrentValue = 70, -- Set the initial FOV value (you can set it to the current camera FOV)
+Flag = "Slider1", -- A flag is the identifier for the configuration file
+Callback = function(Value)
+    -- This function will be triggered when the slider value changes
+    local camera = game.Workspace.CurrentCamera
+    camera.FieldOfView = Value -- Set the camera's Field of View to the slider value
+end,
+})
+
+-- Rainbow Character with Toggle Script
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local runService = game:GetService("RunService")
+local originalColors = {} -- To store the original colors of the character's body parts
+local rainbowEnabled = false -- Tracks if the rainbow effect is active
+local rainbowCoroutine -- Stores the running coroutine for the rainbow effect
+
+-- Function to store original colors
+local function storeOriginalColors()
+ for _, part in pairs(character:GetDescendants()) do
+     if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+         originalColors[part] = part.Color
+     end
+ end
+end
+
+-- Function to restore original colors
+local function restoreOriginalColors()
+ for part, color in pairs(originalColors) do
+     if part and part:IsA("BasePart") then
+         part.Color = color
+     end
+ end
+end
+
+-- Function to generate a rainbow color
+local function getRainbowColor(hue)
+ return Color3.fromHSV(hue, 1, 1)
+end
+
+-- Apply the rainbow effect
+local function applyRainbowEffect()
+ local hue = 0
+ while rainbowEnabled do
+     -- Update hue value (cycle through colors)
+     hue = (hue + 0.01) % 1
+     local rainbowColor = getRainbowColor(hue)
+
+     -- Change color of each body part
+     for _, part in pairs(character:GetDescendants()) do
+         if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+             part.Color = rainbowColor
+         end
+     end
+
+     task.wait(0.05) -- Adjust speed of color change
+ end
+end
+
+-- Toggle for the rainbow effect
+local Toggle = Tab3:CreateToggle({
+ Name = "Rainbow Character",
+ CurrentValue = false,
+ Flag = "ToggleRainbow",
+ Callback = function(Value)
+     if Value then
+         -- Enable rainbow effect
+         if not rainbowEnabled then
+             rainbowEnabled = true
+             storeOriginalColors() -- Save original skin tone
+             rainbowCoroutine = coroutine.wrap(applyRainbowEffect)
+             rainbowCoroutine()
+         end
+     else
+         -- Disable rainbow effect and restore original colors
+         rainbowEnabled = false
+         task.wait(0.1) -- Small delay to ensure coroutine stops
+         restoreOriginalColors()
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Bathrooms [ayo]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(-71.2184372, 14, 97.3411865)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Donut Shop",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(-102.771515, 14, -60.5795631)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(10), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Priv Room [Top]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(203, 37, 75)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Priv Room [Below]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(204, 18, 73)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Tower [Below]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(38, 13, 241)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Tower [Top]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(20, 291, 259)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Tower [Very Top]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(33, 317, 244)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Canopy [Bathrooms]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(-81, 18, 138)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Canopy [Middle]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(57, 16, 37)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Toggle = Tab5:CreateToggle({
+ Name = "Priv Room [Inside]",
+ CurrentValue = false,
+ Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Callback = function(Value)
+     local player = game.Players.LocalPlayer
+     local camera = game.Workspace.CurrentCamera
+  
+     -- Store the original camera type and position when the script starts
+     local originalCameraType = camera.CameraType
+     local originalCameraCFrame = camera.CFrame
+  
+     -- Set the target camera position and rotation
+     local targetPosition = CFrame.new(4239, 19, 74)  -- Set your target camera position here
+     local rotation = CFrame.Angles(0, math.rad(60), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+  
+     -- Combine position and rotation
+     local targetCFrame = targetPosition * rotation
+
+     if Value then
+         -- When the toggle is on, lock the camera at the target position and rotation
+         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
+         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+
+     else
+         -- When the toggle is off, reset the camera to its original state
+         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
+         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+
+     end
+ end,
+})
+
+local Label = Tab1:CreateLabel("Freeze - Invis", 14902217812, Color3.fromRGB(220, 220, 220), true)
+
+local FrozenChar = Tab1:CreateToggle({
+Name = "Freeze Character",
+CurrentValue = false,
+Flag = "AntiMovement",
+Callback = function(hasFrozenChar)
+  if hasFrozenChar then
+      local Character = getgenv().Character
+      local Workspace_Service = game:GetService("Workspace") or workspace or cloneref(game:GetService("Workspace"))
+      local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart", true) or Workspace_Service:WaitForChild(LocalPlayer.Name):WaitForChild("HumanoidRootPart", 999)
+      getgenv().FreezingChar = true
+      if Character and HumanoidRootPart or Character:FindFirstChild("HuamnoidRootPart") then
+          if getgenv().FreezingChar == true then
+              HumanoidRootPart.Anchored = true
+          end
+      else
+          getgenv().FreezingChar = false
+      end
+  else
+      local Character = getgenv().Character
+      local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart", true)
+      if Character and HumanoidRootPart or Character:FindFirstChild("HumanoidRootPart") then
+          getgenv().FreezingChar = false
+          wait(0)
+          HumanoidRootPart.Anchored = false
+      else
+          getgenv().FreezingChar = false
+      end
+  end
+end,})
+
+local Label = Tab8:CreateLabel("Esp/Misc", 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Highlights = {}  -- Store the highlights for cleanup
+local ESPEnabled = false
+local HighlightColor = Color3.fromRGB(255, 0, 0)  -- Default color for highlight (Red)
+
+-- Function to create a highlight for a player's character
+local function CreateHighlight(Target)
+    -- Ensure the player has a character
+    if Target.Character and Target.Character:FindFirstChild("Humanoid") then
+        local Character = Target.Character
+        local Highlight = Instance.new("Highlight")
+        Highlight.Name = Target.Name
+        Highlight.Parent = Character
+        Highlight.Adornee = Character  -- Highlight the entire character
+        Highlight.FillColor = HighlightColor  -- Use the selected color
+        Highlight.FillTransparency = 0.5  -- Make it semi-transparent
+        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)  -- White outline color
+        Highlight.OutlineTransparency = 0.5  -- Outline transparency
+
+        -- Store the highlight for cleanup
+        Highlights[Target.Name] = Highlight
+    end
+end
+
+-- Function to remove the highlight for a player's character
+local function RemoveHighlight(Target)
+    if Highlights[Target.Name] then
+        Highlights[Target.Name]:Destroy()
+        Highlights[Target.Name] = nil
+    end
+end
+
+-- Toggle function for enabling/disabling player highlighting
+local Toggle = Tab8:CreateToggle({
+    Name = "Toggle Esp",
+    CurrentValue = false,
+    Flag = "TogglePlayerHighlighting",  -- Unique flag for saving configuration
+    Callback = function(Value)
+        if Value then
+            -- Turn on highlighting for all players
+            ESPEnabled = true
+            for _, Target in pairs(Players:GetPlayers()) do
+                if Target ~= Player then
+                    -- Create a highlight for other players
+                    CreateHighlight(Target)
+                end
+            end
+        else
+            -- Turn off highlighting
+            ESPEnabled = false
+            for _, Target in pairs(Players:GetPlayers()) do
+                if Target ~= Player then
+                    -- Remove highlight for other players
+                    RemoveHighlight(Target)
+                end
+            end
+        end
+    end,
+})
+
+-- Color Picker for changing the highlight color
+local ColorPicker = Tab8:CreateColorPicker({
+    Name = "Highlight Color",
+    Color = HighlightColor,  -- Initial color set to red
+    Flag = "ColorPicker1",  -- Unique flag for configuration saving
+    Callback = function(Value)
+        -- Update the HighlightColor variable when the user selects a new color
+        HighlightColor = Value
+        -- Update the color of existing highlights
+        if ESPEnabled then
+            for _, Highlight in pairs(Highlights) do
+                Highlight.FillColor = HighlightColor  -- Change the fill color
+            end
+        end
+    end
+})
+
+-- Listen for new players joining
+Players.PlayerAdded:Connect(function(Target)
+    if ESPEnabled then
+        CreateHighlight(Target)
+    end
+end)
+
+-- Listen for players leaving
+Players.PlayerRemoving:Connect(function(Target)
+    RemoveHighlight(Target)
+end)
+
+-- Ensure cleanup when the toggle is turned off
+local function CleanupHighlights()
+    for _, Target in pairs(Players:GetPlayers()) do
+        RemoveHighlight(Target)
+    end
+end
+
+-- Clean up highlights when the toggle is disabled
+game:GetService("RunService").Heartbeat:Connect(function()
+    if not ESPEnabled then
+        CleanupHighlights()
+    end
+end)
+
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local MarkerUI
+local MarkersActive = false
+
+-- Function to create markers for players
+local function CreateMarker(Target)
+    local Marker = Instance.new("BillboardGui")
+    Marker.Name = Target.Name
+    Marker.Size = UDim2.new(0, 200, 0, 100)  -- Fixed size in pixels
+    Marker.StudsOffset = Vector3.new(0, 3, 0)
+    Marker.Adornee = Target.Character and Target.Character:FindFirstChild("Head")
+    Marker.AlwaysOnTop = true
+
+    -- Background Frame
+    local Background = Instance.new("Frame")
+    Background.Size = UDim2.new(1, 0, 1, 0)
+    Background.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    Background.BackgroundTransparency = 0.5
+    Background.Parent = Marker
+
+    -- Rounded Corners
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = Background
+
+    -- Display Name Label
+    local DisplayNameLabel = Instance.new("TextLabel")
+    DisplayNameLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    DisplayNameLabel.Position = UDim2.new(0, 0, 0, 0)
+    DisplayNameLabel.BackgroundTransparency = 1
+    DisplayNameLabel.Text = Target.DisplayName
+    DisplayNameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DisplayNameLabel.TextScaled = true
+    DisplayNameLabel.Font = Enum.Font.GothamBold
+    DisplayNameLabel.Parent = Background
+
+    -- Username Label
+    local UsernameLabel = Instance.new("TextLabel")
+    UsernameLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    UsernameLabel.Position = UDim2.new(0, 0, 0.5, 0)
+    UsernameLabel.BackgroundTransparency = 1
+    UsernameLabel.Text = "@" .. Target.Name
+    UsernameLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    UsernameLabel.TextScaled = true
+    UsernameLabel.Font = Enum.Font.Gotham
+    UsernameLabel.Parent = Background
+
+    -- Transparent Button for Interaction
+    local Button = Instance.new("TextButton")
+    Button.Size = UDim2.new(1, 0, 1, 0)
+    Button.BackgroundTransparency = 1
+    Button.Text = ""
+    Button.Parent = Marker
+
+    return Marker, Button
+end
+
+-- Function to teleport to a player
+local function TeleportToPlayer(Target)
+    if Target.Character and Target.Character:FindFirstChild("HumanoidRootPart") then
+        local hrp = Target.Character.HumanoidRootPart
+        Player.Character:SetPrimaryPartCFrame(hrp.CFrame + Vector3.new(0, 5, 0))
+    end
+end
+
+-- Function to setup markers
+local function SetupMarkers()
+    if MarkerUI then
+        MarkerUI:Destroy()
+    end
+
+    MarkerUI = Instance.new("ScreenGui")
+    MarkerUI.Name = "Markers"
+    MarkerUI.ResetOnSpawn = false
+    MarkerUI.Parent = Player.PlayerGui
+    MarkersActive = true
+
+    wait(0.1)
+    while MarkersActive do
+        for _, Target in pairs(Players:GetPlayers()) do
+            if Target == Player then
+                continue
+            end
+
+            if not Target.Character then
+                if MarkerUI:FindFirstChild(Target.Name) then
+                    MarkerUI:FindFirstChild(Target.Name):Destroy()
+                end
+                continue
+            end
+
+            if MarkerUI:FindFirstChild(Target.Name) then
+                continue
+            end
+
+            local Marker, Button = CreateMarker(Target)
+            if Marker then
+                Marker.Parent = MarkerUI
+                Button.MouseButton1Click:Connect(function()
+                    TeleportToPlayer(Target)
+                end)
+            end
+        end
+
+        -- Cleanup markers for players who have left
+        for _, Marker in pairs(MarkerUI:GetChildren()) do
+            if Marker:IsA("BillboardGui") and not Players:FindFirstChild(Marker.Name) then
+                Marker:Destroy()
+            end
+        end
+
+        wait(0.65)
+    end
+end
+
+-- Button creation and functionality for the tab-based UI
+local Button = Tab8:CreateButton({
+    Name = "Toggle Markers",
+    Callback = function()
+        if MarkersActive then
+            -- Stop markers
+            MarkersActive = false
+            if MarkerUI then
+                MarkerUI:Destroy()
+                MarkerUI = nil
+            end
+        else
+            -- Start markers
+            SetupMarkers()
+        end
+    end,
+})
+
+local Label = Tab8:CreateLabel("Job Id / Player Joiner", 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+-- Function to join the job with the provided Job ID
+local function JoinJob(JobID)
+    -- Assuming you have a function or method to set the player's job
+    -- If your game uses a custom system for assigning jobs, replace the following line with the appropriate logic.
+    -- Example: some custom job assignment function or event
+    -- Here, it's just a placeholder for the job join logic.
+
+    -- This example assumes you're using a simple method where the job ID is set
+    -- You should replace this with the actual method your game uses.
+    local jobAssigned = false
+    for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if v.Name == "Job" and v:FindFirstChild(JobID) then
+            -- Assuming there's an event or method to set the player's job based on the ID
+            Player:SetAttribute("JobID", JobID)  -- This is an example, adapt it to your game's system.
+            jobAssigned = true
+            break
+        end
+    end
+
+    -- Provide feedback to the player
+    if jobAssigned then
+        print("Successfully joined Job ID: " .. JobID)
+    else
+        print("Invalid Job ID: " .. JobID)
+    end
+end
+
+-- Rayfield Input for Job ID
+local Input = Tab8:CreateInput({
+    Name = "Enter Job ID",  -- Name for the input box
+    CurrentValue = "",  -- Default empty value
+    PlaceholderText = "Input Job ID",  -- Placeholder text
+    RemoveTextAfterFocusLost = false,  -- Keep text after losing focus
+    Flag = "JobIDInput",  -- Unique flag for saving the configuration
+    Callback = function(JobID)
+        -- Call the function to join the job when the user inputs the Job ID
+        if JobID and JobID ~= "" then
+            JoinJob(JobID)  -- Join the job based on the inputted Job ID
+        else
+            print("Please enter a valid Job ID")
+        end
+    end,
+})
+
