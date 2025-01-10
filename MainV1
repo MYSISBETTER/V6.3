@@ -52,28 +52,28 @@ getgenv().Head = getgenv().Character:WaitForChild("Head") or getgenv().Character
 getgenv().AllClipboards = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 getgenv().httprequest_Init = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 
--- Ensure TextChatService is available
+
 local TextChatService = game:GetService("TextChatService")
 
--- Function to send a message
+
 local function sendMessage(content)
-    -- Check if the default chat channel exists
+    
     local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
     if chatChannel then
-        chatChannel:SendAsync(content)  -- Send the message
+        chatChannel:SendAsync(content)  
     else
         warn("Chat channel not found!")
     end
 end
 
--- Example usage
+
 sendMessage("MYS.CLIENT ON TOP!")
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/MYSISBETTER/jj/refs/heads/main/MAIN'))()
 
 local Window = Rayfield:CreateWindow({
-Name = "               Welcome | " .. game.Players.LocalPlayer.Name .. " | " .. os.date("%I:%M %p") .. " | V6.2", -- Initial time
-   Icon = 12655693190, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+Name = "               Welcome | " .. game.Players.LocalPlayer.Name .. " | " .. os.date("%I:%M %p") .. " | V6.2", 
+   Icon = 12655693190, 
    LoadingTitle = "Welcome",
    LoadingSubtitle = game.Players.LocalPlayer.Name,
    Theme = {
@@ -144,7 +144,7 @@ local function checkForUser()
     local OwnerPlayer = Players:FindFirstChild(OwnerName)
 
     if OwnerPlayer then
-        -- Notify if the user is in the server
+        
         Rayfield:Notify({
             Title = "User Detected!",
             Content = OwnerName .. " is in this server!",
@@ -152,7 +152,7 @@ local function checkForUser()
             Image = 4483362458,
         })
     else
-        -- Optionally, notify if the user is not found
+        
         Rayfield:Notify({
             Title = "User Not Found",
             Content = OwnerName .. " is not in this server.",
@@ -162,19 +162,19 @@ local function checkForUser()
     end
 end
 
--- Automatically check for the user when the script is executed
+
 checkForUser()
 
 local Players = game:GetService("Players")
 local OwnerName = "01xMYS"
-local OwnerFound = false -- To prevent duplicate notifications
+local OwnerFound = false 
 
 local function checkForUser()
     local OwnerPlayer = Players:FindFirstChild(OwnerName)
 
     if OwnerPlayer and not OwnerFound then
         OwnerFound = true
-        -- Notify if the user joins the server
+        
         Rayfield:Notify({
             Title = "User Detected!",
             Content = OwnerName .. " has joined the server!",
@@ -184,34 +184,34 @@ local function checkForUser()
     end
 end
 
--- Monitor when players join
+
 Players.PlayerAdded:Connect(function(player)
     if player.Name == OwnerName then
         checkForUser()
     end
 end)
 
--- Initial check in case the player is already in the server
+
 checkForUser()
 
 local Players = game:GetService("Players")
 
-local OwnerName = "01xMYS" -- The username of the player sending the command
+local OwnerName = "01xMYS" 
 
--- Function to handle notifications
+
 local function handleChatCommand(sender, message)
-    -- Check if the sender is the specified owner
+    
     if sender.Name == OwnerName then
-        -- Check if the message starts with ".notify"
+        
         if message:sub(1, 7) == "/notify" then
-            -- Extract the target username and the content
-            local commandContent = message:sub(9):match("^%s*(.-)%s*$") -- Remove leading/trailing spaces
+            
+            local commandContent = message:sub(9):match("^%s*(.-)%s*$") 
             if commandContent then
                 local targetName, notifyContent = commandContent:match("^(%S+)%s*(.*)$")
                 if targetName then
                     local targetPlayer = Players:FindFirstChild(targetName)
                     if targetPlayer and targetPlayer == Players.LocalPlayer then
-                        -- Notify the target player with the provided content
+                        
                         Rayfield:Notify({
                             Title = "01xMYS Notified You!",
                             Content = notifyContent ~= "" and notifyContent or "You have been notified by " .. OwnerName .. "!",
@@ -225,7 +225,7 @@ local function handleChatCommand(sender, message)
     end
 end
 
--- Connect to the chat messages
+
 Players.PlayerAdded:Connect(function(player)
     if player.Name == OwnerName then
         player.Chatted:Connect(function(message)
@@ -234,7 +234,7 @@ Players.PlayerAdded:Connect(function(player)
     end
 end)
 
--- Handle the case where the owner is already in the server
+
 local ownerPlayer = Players:FindFirstChild(OwnerName)
 if ownerPlayer then
     ownerPlayer.Chatted:Connect(function(message)
@@ -272,7 +272,7 @@ wait(0.1)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ["title"] = "Player Info",
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ["description"] = "MYS SCRIPT HAS BEEN LOADED!",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["color"] = 16711680, -- Red color
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ["color"] = 16711680, 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ["fields"] = {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ["name"] = "Username",
@@ -354,108 +354,108 @@ local Button = Tab2:CreateButton({
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
         local camera = workspace.CurrentCamera
-        local teleportDistance = 10 -- Distance to "move" side-to-side
-        local delayTime = 0.1 -- Default delay time (starting point)
-        local cameraDistance = 15 -- Distance behind the player for the camera
-        local isMoving = false -- Whether side-to-side movement is active
-        local speed = 10 -- Speed factor, 10000 is fastest, 1 is slowest
+        local teleportDistance = 10 
+        local delayTime = 0.1 
+        local cameraDistance = 15 
+        local isMoving = false 
+        local speed = 10 
 
-        -- Create GUI Elements
+        
         local screenGui = Instance.new("ScreenGui")
         screenGui.Parent = player:WaitForChild("PlayerGui")
 
-        -- Create a container frame that will hold all GUI elements
+        
         local guiContainer = Instance.new("Frame")
-        guiContainer.Size = UDim2.new(0, 200, 0, 250) -- Adjust the size to fit everything
+        guiContainer.Size = UDim2.new(0, 200, 0, 250) 
         guiContainer.Position = UDim2.new(0.5, -100, 0.9, -120)
-        guiContainer.BackgroundTransparency = 1 -- Make the container background transparent
+        guiContainer.BackgroundTransparency = 1 
         guiContainer.Parent = screenGui
 
-        -- Create a draggable bar (black line) that will allow dragging the TextBox and Toggle Button together
+        
         local dragBar = Instance.new("Frame")
-        dragBar.Size = UDim2.new(0, 200, 0, 25)  -- Made the bar a little taller (height is 25)
-        dragBar.Position = UDim2.new(0, 0, 0, 0)  -- Position it at the top of the container
+        dragBar.Size = UDim2.new(0, 200, 0, 25)  
+        dragBar.Position = UDim2.new(0, 0, 0, 0)  
         dragBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         dragBar.Parent = guiContainer
 
-        -- Add text to the dragBar
+        
         local dragText = Instance.new("TextLabel")
-        dragText.Size = UDim2.new(1, 0, 1, 0)  -- Fill the entire drag bar
+        dragText.Size = UDim2.new(1, 0, 1, 0)  
         dragText.Text = "Made by Mys V2"
         dragText.TextColor3 = Color3.fromRGB(255, 255, 255)
         dragText.BackgroundTransparency = 1
         dragText.TextScaled = true
         dragText.Parent = dragBar
 
-        -- Speed TextBox (now positioned directly below the draggable bar)
+        
         local speedTextBox = Instance.new("TextBox")
-        speedTextBox.Size = UDim2.new(0, 200, 0, 50)  -- Made the TextBox taller (height is now 50)
-        speedTextBox.Position = UDim2.new(0, 0, 0, 25)  -- Adjusted to be directly under the draggable bar
-        speedTextBox.Text = "10"  -- Set the prefilled text to "10"
+        speedTextBox.Size = UDim2.new(0, 200, 0, 50)  
+        speedTextBox.Position = UDim2.new(0, 0, 0, 25)  
+        speedTextBox.Text = "10"  
         speedTextBox.TextColor3 = Color3.fromRGB(200, 200, 200)
         speedTextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         speedTextBox.TextScaled = true
         speedTextBox.Parent = guiContainer
 
-        -- Toggle Button (inside the container)
+        
         local toggleButton = Instance.new("TextButton")
         toggleButton.Size = UDim2.new(0, 200, 0, 60)
-        toggleButton.Position = UDim2.new(0, 0, 0, 75) -- Positioned directly below the TextBox
+        toggleButton.Position = UDim2.new(0, 0, 0, 75) 
         toggleButton.Text = "Off"
         toggleButton.Parent = guiContainer
         toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
         toggleButton.TextColor3 = Color3.fromRGB(20, 20, 20)
 
-        -- Update speed based on TextBox input
+        
         speedTextBox.FocusLost:Connect(function()
             local enteredSpeed = tonumber(speedTextBox.Text)
             if enteredSpeed and enteredSpeed >= 1 and enteredSpeed <= 10000 then
                 speed = enteredSpeed
-                delayTime = 1 / speed -- Inverse relationship: higher speed = lower delay time
+                delayTime = 1 / speed 
             else
-                -- If the input is invalid, reset to the default speed
+                
                 speedTextBox.Text = tostring(speed)
             end
         end)
 
-        -- Function to simulate side-to-side movement
+        
         local function moveSideToSide()
             while isMoving do
-                -- Move left
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Reset to center
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Move right
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Reset to center
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
                 wait(delayTime)
             end
         end
 
-        -- Function to smoothly move the camera behind the character
+        
         local function smoothCameraFollow()
             while isMoving do
-                -- Get the target position behind the player
+                
                 local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * cameraDistance + Vector3.new(0, 5, 0)
                
-                -- Smoothly transition the camera to the target position
+                
                 camera.CFrame = camera.CFrame:Lerp(CFrame.new(targetPosition, humanoidRootPart.Position), 0.1)
 
-                -- Wait to smooth the transition
+                
                 wait(0.03)
             end
         end
 
-        -- Toggle function for the button
+        
         toggleButton.MouseButton1Click:Connect(function()
-            isMoving = not isMoving -- Toggle movement state
+            isMoving = not isMoving 
             if isMoving then
                 toggleButton.Text = "On"
                 toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
@@ -469,7 +469,7 @@ local Button = Tab2:CreateButton({
             end
         end)
 
-        -- Draggable functionality for the dragBar, TextBox, and Toggle Button together
+        
         local dragging = false
         local dragStart = Vector3.new()
         local initialPosition = UDim2.new()
@@ -482,14 +482,14 @@ local Button = Tab2:CreateButton({
             end
         end)
 
-        -- Stop dragging when the mouse button is released
+        
         dragBar.InputEnded:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 then
                 dragging = false
             end
         end)
 
-        -- Update the position smoothly as the mouse moves
+        
         game:GetService("UserInputService").InputChanged:Connect(function(input)
             if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
                 local delta = input.Position - dragStart
@@ -507,54 +507,54 @@ local Button = Tab2:CreateButton({
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
         local camera = workspace.CurrentCamera
-        local teleportDistance = 10 -- Distance to "move" side-to-side
-        local delayTime = 0.1 -- Default delay time (starting point)
-        local cameraDistance = 15 -- Distance behind the player for the camera
-        local isMoving = false -- Whether side-to-side movement is active
-        local speed = 10000 -- Speed factor, 10000 is fastest, 1 is slowest
+        local teleportDistance = 10 
+        local delayTime = 0.1 
+        local cameraDistance = 15 
+        local isMoving = false 
+        local speed = 10000 
 
-        -- Function to simulate side-to-side movement
+        
         local function moveSideToSide()
             while isMoving do
-                -- Move left
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Reset to center
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Move right
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-teleportDistance, 0, 0)
                 wait(delayTime)
 
-                -- Reset to center
+                
                 humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
                 wait(delayTime)
             end
         end
 
-        -- Function to smoothly move the camera behind the character
+        
         local function smoothCameraFollow()
             while isMoving do
-                -- Get the target position behind the player
+                
                 local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * cameraDistance + Vector3.new(0, 5, 0)
                
-                -- Smoothly transition the camera to the target position
+                
                 camera.CFrame = camera.CFrame:Lerp(CFrame.new(targetPosition, humanoidRootPart.Position), 0.1)
 
-                -- Wait to smooth the transition
+                
                 wait(0.03)
             end
         end
 
-        -- Create a tool and give it to the player
+        
         local tool = Instance.new("Tool")
         tool.Name = "FlashStepTool"
         tool.RequiresHandle = true
         tool.Parent = player.Backpack
 
-        -- Add a Handle to the tool to make it usable (for visual purposes)
+        
         local handle = Instance.new("Part")
         handle.Name = "Handle"
         handle.Size = Vector3.new(1, 5, 1)
@@ -563,7 +563,7 @@ local Button = Tab2:CreateButton({
         handle.CanCollide = false
         handle.Parent = tool
 
-        -- When the tool is held out, start the Flash Step movement
+        
         tool.Equipped:Connect(function()
             isMoving = true
             camera.CameraType = Enum.CameraType.Scriptable
@@ -571,7 +571,7 @@ local Button = Tab2:CreateButton({
             spawn(moveSideToSide)
         end)
 
-        -- When the tool is unequipped, stop the Flash Step movement
+        
         tool.Unequipped:Connect(function()
             isMoving = false
             camera.CameraType = Enum.CameraType.Custom
@@ -579,12 +579,86 @@ local Button = Tab2:CreateButton({
     end
 })
 
+local Input = Tab2:CreateInput({
+    Name = "MYS Flashstep Keybind",
+    CurrentValue = "",
+    PlaceholderText = "Enter Key (e.g., F)",
+    RemoveTextAfterFocusLost = true,
+    Flag = "InputKey",
+    Callback = function(key)
+        
+        local reanimationKey = key:upper()
+        local isMoving = false
+        local speed = 1000 
+        local teleportDistance = 10 
+        local cameraDistance = 15 
+        local activeConnection 
+
+        
+        if activeConnection then
+            activeConnection:Disconnect()
+            activeConnection = nil
+        end
+
+        
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local camera = workspace.CurrentCamera
+
+        
+        local function toggleMovement()
+            isMoving = not isMoving
+
+            if isMoving then
+                print("Reanimation activated.")
+                camera.CameraType = Enum.CameraType.Scriptable
+
+                
+                spawn(function()
+                    while isMoving do
+                        local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * cameraDistance + Vector3.new(0, 5, 0)
+                        camera.CFrame = camera.CFrame:Lerp(CFrame.new(targetPosition, humanoidRootPart.Position), 0.1)
+                        wait(0.03)
+                    end
+                end)
+
+                
+                spawn(function()
+                    while isMoving do
+                        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                        wait(1 / speed)
+                        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(-2 * teleportDistance, 0, 0)
+                        wait(1 / speed)
+                        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(teleportDistance, 0, 0)
+                        wait(1 / speed)
+                    end
+                end)
+            else
+                print("Reanimation deactivated.")
+                camera.CameraType = Enum.CameraType.Custom
+            end
+        end
+
+        
+        activeConnection = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+            if gameProcessed then return end
+            if input.KeyCode == Enum.KeyCode[reanimationKey] then
+                toggleMovement()
+            end
+        end)
+    end,
+})
+
+
+
+
 local Tab3 = Window:CreateTab("Player", 7992557358)
 local Label = Tab1:CreateLabel(
-   "Welcome " .. game.Players.LocalPlayer.Name, -- Concatenate the welcome message with the player's name
-   138968976554779, -- Assuming this is some kind of identifier or value required by CreateLabel
-   Color3.fromRGB(220, 220, 220), -- Label color
-   true -- Additional parameter (if needed)
+   "Welcome " .. game.Players.LocalPlayer.Name, 
+   138968976554779, 
+   Color3.fromRGB(220, 220, 220), 
+   true 
 )
 
 local Tab4 = Window:CreateTab("Voice Chat", 14333877451)
@@ -596,18 +670,18 @@ local Button = Tab6:CreateButton({
    Callback = function()
 local TextChatService = game:GetService("TextChatService")
 
--- Function to send a message
+
 local function sendMessage(content)
-    -- Check if the default chat channel exists
+    
     local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
     if chatChannel then
-        chatChannel:SendAsync(content)  -- Send the message
+        chatChannel:SendAsync(content)  
     else
         warn("Chat channel not found!")
     end
 end
 
--- Example usage
+
 sendMessage("MYS.CLIENT ON TOP FR!")
 
    end,
@@ -618,18 +692,18 @@ local Button = Tab6:CreateButton({
    Callback = function()
 local TextChatService = game:GetService("TextChatService")
 
--- Function to send a message
+
 local function sendMessage(content)
-    -- Check if the default chat channel exists
+    
     local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
     if chatChannel then
-        chatChannel:SendAsync(content)  -- Send the message
+        chatChannel:SendAsync(content)  
     else
         warn("Chat channel not found!")
     end
 end
 
--- Example usage
+
 sendMessage("L WEST 😂")
 
    end,
@@ -649,7 +723,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/
 local Tab8 = Window:CreateTab("Settings", 13568966069)
 local Tab9 = Window:CreateTab("Stats", 14377123173)
 
--- Function to detect the device/platform
+
 local function Device_Detector()
    local UserInputService = game:GetService("UserInputService")
 
@@ -698,7 +772,7 @@ local function Device_Detector()
    end
 end
 
--- Function to detect the executor name and version
+
 local function getExecutor()
    local name, version
    if identifyexecutor then
@@ -707,20 +781,20 @@ local function getExecutor()
    return { Name = name or "Unknown Executor", Version = version or "Unknown Version" }
 end
 
--- Function to detect the executor
+
 local function detectExecutor()
-   local executorDetails = getExecutor()  -- Retrieve executor details using the getExecutor function
-   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  -- Format the details
+   local executorDetails = getExecutor()  
+   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  
 end
 
--- Create labels for platform and executor information inside task.spawn
-   -- Detect platform
+
+   
    local platform = Device_Detector()
   
-   -- Create label for device/platform using Tab:CreateLabel
+   
    local platformLabel = Tab9:CreateLabel("Platform: " .. platform, 4483362458, Color3.fromRGB(255, 255, 255), false)
 
--- Function to detect the executor name and version
+
 local function getExecutor()
    local name, version
    if identifyexecutor then
@@ -729,61 +803,61 @@ local function getExecutor()
    return { Name = name or "Unknown Executor", Version = version or "Unknown Version" }
 end
 
--- Function to detect the executor
+
 local function detectExecutor()
-   local executorDetails = getExecutor()  -- Retrieve executor details using the getExecutor function
-   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  -- Format the details
+   local executorDetails = getExecutor()  
+   return string.format("%s (v%s)", executorDetails.Name, executorDetails.Version)  
 end
 
--- Create labels for executor information inside task.spawn
+
 task.spawn(function()
-   -- Detect executor
+   
    local executorName = detectExecutor()
   
-   -- Create label for executor using Tab:CreateLabel
+   
    local executorLabel = Tab9:CreateLabel("Executor: " .. executorName, 4483362458, Color3.fromRGB(255, 255, 255), false)
 end)
 
 
 
 
--- Define the target date (e.g., January 1st, 2023)
+
 local targetYear = 2025
 local targetMonth = 1
 local targetDay = 6
 
--- Get the current date and time
-local currentDate = os.date("*t")  -- This gets the current date as a table
 
--- Define the target date as a timestamp
+local currentDate = os.date("*t")  
+
+
 local targetDate = os.time({year = targetYear, month = targetMonth, day = targetDay, hour = 0, min = 0, sec = 0})
 
--- Get the current date as a timestamp
+
 local currentDate = os.time(currentDate)
 
--- Calculate the difference in seconds
+
 local differenceInSeconds = currentDate - targetDate
 
--- Convert the difference to days (1 day = 86400 seconds)
+
 local daysAgo = math.floor(differenceInSeconds / 86400)
 
--- Display the result in a label
+
 local Label = Tab9:CreateLabel("MYS.CLIENT V6 was created " .. daysAgo .. " days ago.", 4483362458, Color3.fromRGB(255, 255, 255), false)
 
 
 
 
 
--- Assuming you have a label setup with Tab:CreateLabel
+
 local function displayAccountAge(player)
-   -- Get the player's account age in days
+   
    local accountAge = player.AccountAge
 
-   -- Create a label that shows the player's account age
+   
    local Label = Tab9:CreateLabel("Your account is " .. accountAge .. " days old.", 4483362458, Color3.fromRGB(255, 255, 255), false)
 end
 
--- Example: Display account age for the local player
+
 displayAccountAge(game.Players.LocalPlayer)
 
 
@@ -846,97 +920,97 @@ createBottomBar()
 
 
 local Workspace = game:GetService("Workspace")
-local baseplate -- Declare a variable to store the baseplate instance
+local baseplate 
 
--- Create the toggle for Custom Baseplate
+
 local Toggle = Tab8:CreateToggle({
 Name = "Custom Baseplate",
-CurrentValue = true,  -- Default to true so it's activated initially
-Flag = "Toggle1", -- A flag is the identifier for the configuration file
+CurrentValue = true,  
+Flag = "Toggle1", 
 Callback = function(Value)
     if Value then
-        -- Create the baseplate when toggled on
-        if not baseplate then -- Ensure it doesn't recreate if already exists
-            -- Define the baseplate dimensions
+        
+        if not baseplate then 
+            
             local sizeX = 2048
             local sizeY = 16
             local sizeZ = 2048
 
-            -- Create the baseplate
+            
             baseplate = Instance.new("Part")
             baseplate.Size = Vector3.new(sizeX, sizeY, sizeZ)
-            baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) -- Position it slightly above the origin
+            baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) 
             baseplate.Anchored = true
             baseplate.CanCollide = true
-            baseplate.Transparency = 0.5 -- Set translucency (0 is opaque, 1 is invisible)
+            baseplate.Transparency = 0.5 
             baseplate.Material = Enum.Material.SmoothPlastic
             baseplate.Color = Color3.fromRGB(106, 28, 154)
 
-            -- Parent the baseplate to the Workspace
+            
             baseplate.Parent = Workspace
         end
     else
-        -- Destroy the baseplate when toggled off
+        
         if baseplate then
             baseplate:Destroy()
-            baseplate = nil -- Clear the reference
+            baseplate = nil 
         end
     end
 end,
 })
 
--- Make sure the baseplate is created when the script starts
+
 if Toggle.CurrentValue then
--- Create the baseplate initially if toggle is true
+
 if not baseplate then
     local sizeX = 2048
     local sizeY = 16
     local sizeZ = 2048
 
-    -- Create the baseplate
+    
     baseplate = Instance.new("Part")
     baseplate.Size = Vector3.new(sizeX, sizeY, sizeZ)
-    baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) -- Position it slightly above the origin
+    baseplate.Position = Vector3.new(0, sizeY / -1.99, 0) 
     baseplate.Anchored = true
     baseplate.CanCollide = true
-    baseplate.Transparency = 0.5 -- Set translucency (0 is opaque, 1 is invisible)
+    baseplate.Transparency = 0.5 
     baseplate.Material = Enum.Material.SmoothPlastic
     baseplate.Color = Color3.fromRGB(106, 28, 154)
 
-    -- Parent the baseplate to the Workspace
+    
     baseplate.Parent = Workspace
 end
 end
 
--- Create the toggle UI element
+
 local Toggle = Tab8:CreateToggle({
 Name = "Extended Baseplate",
 CurrentValue = false,
-Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+Flag = "Toggle1", 
 Callback = function(Value)
-   -- Find the baseplate in the "SoccerField" or "Game" folder
+   
    local soccerField = workspace:FindFirstChild("SoccerField")
    local baseplate
 
    if soccerField then
-       -- If "SoccerField" exists, look for "Baseplate" inside it
+       
        baseplate = soccerField:FindFirstChild("Baseplate")
    else
-       -- If "SoccerField" doesn't exist, check for the "Game" folder
+       
        local gameFolder = workspace:FindFirstChild("Game")
        if gameFolder then
-           -- Look for "Baseplate" inside the "Game" folder
+           
            baseplate = gameFolder:FindFirstChild("Baseplate")
        end
    end
 
-   -- If the baseplate is found, change its size based on the toggle state
+   
    if baseplate then
        if Value then
-           -- When the toggle is on, extend the baseplate
+           
            baseplate.Size = Vector3.new(2048, 16, 2048)
        else
-           -- When the toggle is off, revert the baseplate to the original size
+           
            baseplate.Size = Vector3.new(402, 16, 387)
        end
    else
@@ -947,69 +1021,69 @@ end,
 
 local Slider = Tab8:CreateSlider({
 Name = "Baseplate Height",
-Range = {-10, 5}, -- Adjust the range as needed
-Increment = 0.1, -- Slider increment
+Range = {-10, 5}, 
+Increment = 0.1, 
 Suffix = "Studs",
-CurrentValue = -1.99, -- Default height
-Flag = "BaseplateHeightSlider", -- Unique flag for the slider
+CurrentValue = -1.99, 
+Flag = "BaseplateHeightSlider", 
 Callback = function(Value)
     if baseplate then
-        -- Update the baseplate's height
+        
         baseplate.Size = Vector3.new(baseplate.Size.X, Value, baseplate.Size.Z)
-        baseplate.Position = Vector3.new(0, Value / 2, 0) -- Recalculate position based on new height
+        baseplate.Position = Vector3.new(0, Value / 2, 0) 
     end
 end,
 })
 
 local SliderDistance = Tab8:CreateSlider({
 Name = "Baseplate Distance",
-Range = {0, 2048}, -- Adjust the range for desired distance
-Increment = 1, -- Slider increment
+Range = {0, 2048}, 
+Increment = 1, 
 Suffix = "Studs",
-CurrentValue = 2048, -- Default distance (starting full size)
-Flag = "BaseplateDistanceSlider", -- Unique flag for the slider
+CurrentValue = 2048, 
+Flag = "BaseplateDistanceSlider", 
 Callback = function(Value)
     if baseplate then
-        -- Calculate the new size for X and Z
-        local newSize = Value * 2 -- Distance is applied symmetrically, so multiply by 2
+        
+        local newSize = Value * 2 
 
-        -- Update the baseplate's size
+        
         baseplate.Size = Vector3.new(newSize, baseplate.Size.Y, newSize)
 
-        -- Keep the baseplate centered at (0, Y, 0)
+        
         baseplate.Position = Vector3.new(0, baseplate.Position.Y, 0)
 
     end
 end,
 })
 
--- Create the sound object
+
 local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://9042041852"  -- The specific sound asset ID
-sound.Volume = 0.2  -- Initial volume (50%)
-sound.Looped = true  -- Set to true if you want the music to loop
-sound.Parent = game:GetService("Workspace")  -- Set the sound parent to Workspace so it plays
+sound.SoundId = "rbxassetid://9042041852"  
+sound.Volume = 0.2  
+sound.Looped = true  
+sound.Parent = game:GetService("Workspace")  
 
-sound:Play()  -- Start the music
+sound:Play()  
 
--- Volume control slider
+
 local Slider = Tab8:CreateSlider({
-   Name = "Music Volume",  -- Slider title
-   Range = {0, 100},  -- Range from 0 to 100
-   Increment = 1,  -- Increment by 1 unit
-   Suffix = "%",  -- Label for slider value
-   CurrentValue = 20,  -- Default value (50%)
-   Flag = "VolumeSlider",  -- Unique flag for saving the configuration
+   Name = "Music Volume",  
+   Range = {0, 100},  
+   Increment = 1,  
+   Suffix = "%",  
+   CurrentValue = 20,  
+   Flag = "VolumeSlider",  
    Callback = function(Value)
-       -- Ensure sound exists before adjusting volume
+       
        if sound then
-           sound.Volume = Value / 100  -- Convert percentage to 0-1 range
+           sound.Volume = Value / 100  
        end
    end,
 })
 
 
-local Label = Tab8:CreateLabel("Mic Up Baseplate", 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Label = Tab8:CreateLabel("Mic Up Baseplate", 4483362458, Color3.fromRGB(255, 255, 255), false) 
 
 local tweenService = game:GetService("TweenService")
 
@@ -1018,39 +1092,39 @@ Name = "Change Baseplate Material",
 Options = {"Grass", "Snow", "Neon", "Halloween"},
 CurrentOption = {"Grass"},
 MultipleOptions = false,
-Flag = "Dropdown1", -- Unique flag
+Flag = "Dropdown1", 
 Callback = function(Options)
-    -- First, try to find the "SoccerField"
+    
     local soccerField = workspace:FindFirstChild("SoccerField")
     local baseplate
 
     if soccerField then
-        -- If "SoccerField" exists, look for "Baseplate" inside it
+        
         baseplate = soccerField:FindFirstChild("Baseplate")
     else
-        -- If "SoccerField" doesn't exist, check for the "Game" folder
+        
         local gameFolder = workspace:FindFirstChild("Game")
         if gameFolder then
-            -- Look for "Baseplate" inside the "Game" folder
+            
             baseplate = gameFolder:FindFirstChild("Baseplate")
         end
     end
 
     if baseplate then
-        -- Remove any existing texture with the specific ID
+        
         for _, child in pairs(baseplate:GetChildren()) do
             if child:IsA("Texture") and child.Texture == "rbxassetid://10442413242" then
                 child:Destroy()
             end
         end
 
-        -- Change material and properties based on selection
+        
         if Options[1] == "Grass" then
-            -- Change material to Grass and color to green
+            
             baseplate.Material = Enum.Material.Grass
             baseplate.Color = Color3.fromRGB(85, 170, 85)
         
-            -- Add the texture for Grass
+            
             local grassTexture = Instance.new("Texture")
             grassTexture.Texture = "rbxassetid://10442413242"
             grassTexture.StudsPerTileU = 4
@@ -1058,19 +1132,19 @@ Callback = function(Options)
             grassTexture.Parent = baseplate
         
         elseif Options[1] == "Snow" then
-            -- Change material to Snow and color to white
+            
             baseplate.Material = Enum.Material.Snow
-            baseplate.Color = Color3.fromRGB(240, 240, 240) -- White for Snow
+            baseplate.Color = Color3.fromRGB(240, 240, 240) 
         
         elseif Options[1] == "Neon" then
-            -- Change material to Neon and color to cyan
+            
             baseplate.Material = Enum.Material.Neon
-            baseplate.Color = Color3.fromRGB(0, 255, 255) -- Cyan for Neon
+            baseplate.Color = Color3.fromRGB(0, 255, 255) 
         
         elseif Options[1] == "Halloween" then
-            -- Change material to SmoothPlastic and color to orange
+            
             baseplate.Material = Enum.Material.SmoothPlastic
-            baseplate.Color = Color3.fromRGB(255, 102, 0) -- Orange for Halloween
+            baseplate.Color = Color3.fromRGB(255, 102, 0) 
         end
 
     else
@@ -1080,29 +1154,29 @@ end,
 
 local ColorPicker = Tab8:CreateColorPicker({
 Name = "Baseplate Color",
-Color = Color3.fromRGB(255, 255, 255), -- Default to white
-Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+Color = Color3.fromRGB(255, 255, 255), 
+Flag = "ColorPicker1", 
 Callback = function(Value)
-    -- The function that takes place every time the color picker is moved/changed
-    -- The variable (Value) is a Color3fromRGB value based on which color is selected
-     -- Try to find the "SoccerField" and "Baseplate"
+    
+    
+     
     local soccerField = workspace:FindFirstChild("SoccerField")
     local baseplate
 
     if soccerField then
-        -- If "SoccerField" exists, look for "Baseplate" inside it
+        
         baseplate = soccerField:FindFirstChild("Baseplate")
     else
-        -- If "SoccerField" doesn't exist, check for the "Game" folder
+        
         local gameFolder = workspace:FindFirstChild("Game")
         if gameFolder then
-            -- Look for "Baseplate" inside the "Game" folder
+            
             baseplate = gameFolder:FindFirstChild("Baseplate")
         end
     end
 
     if baseplate then
-        -- Change the color of the Baseplate to the selected color from the ColorPicker
+        
         baseplate.Color = Value
     else
     end
@@ -1111,28 +1185,28 @@ end
 
 local Slider = Tab5:CreateSlider({
 Name = "FOV Slider",
-Range = {0, 120}, -- Set the range of FOV (from 0 to 120, adjust as needed)
-Increment = 1, -- Set the increment to a smaller value for smooth adjustments
-Suffix = "°", -- This is a suffix to indicate it's the Field of View (degrees)
-CurrentValue = 70, -- Set the initial FOV value (you can set it to the current camera FOV)
-Flag = "Slider1", -- A flag is the identifier for the configuration file
+Range = {0, 120}, 
+Increment = 1, 
+Suffix = "°", 
+CurrentValue = 70, 
+Flag = "Slider1", 
 Callback = function(Value)
-    -- This function will be triggered when the slider value changes
+    
     local camera = game.Workspace.CurrentCamera
-    camera.FieldOfView = Value -- Set the camera's Field of View to the slider value
+    camera.FieldOfView = Value 
 end,
 })
 
--- Rainbow Character with Toggle Script
+
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local runService = game:GetService("RunService")
-local originalColors = {} -- To store the original colors of the character's body parts
-local rainbowEnabled = false -- Tracks if the rainbow effect is active
-local rainbowCoroutine -- Stores the running coroutine for the rainbow effect
+local originalColors = {} 
+local rainbowEnabled = false 
+local rainbowCoroutine 
 
--- Function to store original colors
+
 local function storeOriginalColors()
  for _, part in pairs(character:GetDescendants()) do
      if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
@@ -1141,7 +1215,7 @@ local function storeOriginalColors()
  end
 end
 
--- Function to restore original colors
+
 local function restoreOriginalColors()
  for part, color in pairs(originalColors) do
      if part and part:IsA("BasePart") then
@@ -1150,40 +1224,40 @@ local function restoreOriginalColors()
  end
 end
 
--- Function to generate a rainbow color
+
 local function getRainbowColor(hue)
  return Color3.fromHSV(hue, 1, 1)
 end
 
--- Apply the rainbow effect
+
 local function applyRainbowEffect()
  local hue = 0
  while rainbowEnabled do
-     -- Update hue value (cycle through colors)
+     
      hue = (hue + 0.01) % 1
      local rainbowColor = getRainbowColor(hue)
 
-     -- Change color of each body part
+     
      for _, part in pairs(character:GetDescendants()) do
          if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
              part.Color = rainbowColor
          end
      end
 
-     task.wait(0.05) -- Adjust speed of color change
+     task.wait(0.05) 
  end
 end
 
 local GC = getconnections or get_signal_cons
-local AntiAFKEnabled = false -- To track the current state of the toggle
+local AntiAFKEnabled = false 
 
 local Toggle = Tab3:CreateToggle({
     Name = "Anti-AFK Toggle",
     CurrentValue = false,
-    Flag = "AntiAFKToggle", -- Unique identifier for the toggle
+    Flag = "AntiAFKToggle", 
     Callback = function(Value)
         if Value then
-            -- Enable Anti-AFK
+            
             AntiAFKEnabled = true
             if GC then
                 for _, v in pairs(GC(game:GetService("Players").LocalPlayer.Idled)) do
@@ -1210,7 +1284,7 @@ local Toggle = Tab3:CreateToggle({
                 Image = 4483362458,
             })
         else
-            -- Disable Anti-AFK
+            
             AntiAFKEnabled = false
             Rayfield:Notify({
                 Title = "Anti-AFK Disabled",
@@ -1224,24 +1298,24 @@ local Toggle = Tab3:CreateToggle({
 
 
 
--- Toggle for the rainbow effect
+
 local Toggle = Tab3:CreateToggle({
  Name = "Rainbow Character",
  CurrentValue = false,
  Flag = "ToggleRainbow",
  Callback = function(Value)
      if Value then
-         -- Enable rainbow effect
+         
          if not rainbowEnabled then
              rainbowEnabled = true
-             storeOriginalColors() -- Save original skin tone
+             storeOriginalColors() 
              rainbowCoroutine = coroutine.wrap(applyRainbowEffect)
              rainbowCoroutine()
          end
      else
-         -- Disable rainbow effect and restore original colors
+         
          rainbowEnabled = false
-         task.wait(0.1) -- Small delay to ensure coroutine stops
+         task.wait(0.1) 
          restoreOriginalColors()
      end
  end,
@@ -1250,31 +1324,31 @@ local Toggle = Tab3:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Bathrooms [ayo]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(-71.2184372, 14, 97.3411865)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(-71.2184372, 14, 97.3411865)  
+     local rotation = CFrame.Angles(0, math.rad(45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1283,31 +1357,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Donut Shop",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(-102.771515, 14, -60.5795631)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(10), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(-102.771515, 14, -60.5795631)  
+     local rotation = CFrame.Angles(0, math.rad(10), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1316,31 +1390,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Priv Room [Top]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(203, 37, 75)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(203, 37, 75)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1349,31 +1423,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Priv Room [Below]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(204, 18, 73)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(204, 18, 73)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1382,31 +1456,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Tower [Below]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(38, 13, 241)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(38, 13, 241)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1415,31 +1489,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Tower [Top]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(20, 291, 259)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(20, 291, 259)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1448,31 +1522,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Tower [Very Top]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(33, 317, 244)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(33, 317, 244)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1481,31 +1555,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Canopy [Bathrooms]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(-81, 18, 138)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(-81, 18, 138)  
+     local rotation = CFrame.Angles(0, math.rad(45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1514,31 +1588,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Canopy [Middle]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(57, 16, 37)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(-45), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(57, 16, 37)  
+     local rotation = CFrame.Angles(0, math.rad(-45), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1547,31 +1621,31 @@ local Toggle = Tab5:CreateToggle({
 local Toggle = Tab5:CreateToggle({
  Name = "Priv Room [Inside]",
  CurrentValue = false,
- Flag = "Toggle1", -- A flag is the identifier for the configuration file
+ Flag = "Toggle1", 
  Callback = function(Value)
      local player = game.Players.LocalPlayer
      local camera = game.Workspace.CurrentCamera
   
-     -- Store the original camera type and position when the script starts
+     
      local originalCameraType = camera.CameraType
      local originalCameraCFrame = camera.CFrame
   
-     -- Set the target camera position and rotation
-     local targetPosition = CFrame.new(4239, 19, 74)  -- Set your target camera position here
-     local rotation = CFrame.Angles(0, math.rad(60), 0)  -- Rotate 90 degrees around the Y-axis (you can adjust this value)
+     
+     local targetPosition = CFrame.new(4239, 19, 74)  
+     local rotation = CFrame.Angles(0, math.rad(60), 0)  
   
-     -- Combine position and rotation
+     
      local targetCFrame = targetPosition * rotation
 
      if Value then
-         -- When the toggle is on, lock the camera at the target position and rotation
-         camera.CameraType = Enum.CameraType.Scriptable  -- Lock the camera control
-         camera.CFrame = targetCFrame  -- Set the camera to the target position and rotation
+         
+         camera.CameraType = Enum.CameraType.Scriptable  
+         camera.CFrame = targetCFrame  
 
      else
-         -- When the toggle is off, reset the camera to its original state
-         camera.CameraType = Enum.CameraType.Custom  -- Restore the original camera control mode (player control)
-         camera.CFrame = originalCameraCFrame  -- Restore the original camera position
+         
+         camera.CameraType = Enum.CameraType.Custom  
+         camera.CFrame = originalCameraCFrame  
 
      end
  end,
@@ -1613,30 +1687,30 @@ local Label = Tab8:CreateLabel("Esp/Misc", 4483362458, Color3.fromRGB(255, 255, 
 
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
-local Highlights = {}  -- Store the highlights for cleanup
+local Highlights = {}  
 local ESPEnabled = false
-local HighlightColor = Color3.fromRGB(255, 0, 0)  -- Default color for highlight (Red)
+local HighlightColor = Color3.fromRGB(255, 0, 0)  
 
--- Function to create a highlight for a player's character
+
 local function CreateHighlight(Target)
-    -- Ensure the player has a character
+    
     if Target.Character and Target.Character:FindFirstChild("Humanoid") then
         local Character = Target.Character
         local Highlight = Instance.new("Highlight")
         Highlight.Name = Target.Name
         Highlight.Parent = Character
-        Highlight.Adornee = Character  -- Highlight the entire character
-        Highlight.FillColor = HighlightColor  -- Use the selected color
-        Highlight.FillTransparency = 0.5  -- Make it semi-transparent
-        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)  -- White outline color
-        Highlight.OutlineTransparency = 0.5  -- Outline transparency
+        Highlight.Adornee = Character  
+        Highlight.FillColor = HighlightColor  
+        Highlight.FillTransparency = 0.5  
+        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)  
+        Highlight.OutlineTransparency = 0.5  
 
-        -- Store the highlight for cleanup
+        
         Highlights[Target.Name] = Highlight
     end
 end
 
--- Function to remove the highlight for a player's character
+
 local function RemoveHighlight(Target)
     if Highlights[Target.Name] then
         Highlights[Target.Name]:Destroy()
@@ -1644,27 +1718,27 @@ local function RemoveHighlight(Target)
     end
 end
 
--- Toggle function for enabling/disabling player highlighting
+
 local Toggle = Tab8:CreateToggle({
     Name = "Toggle Esp",
     CurrentValue = false,
-    Flag = "TogglePlayerHighlighting",  -- Unique flag for saving configuration
+    Flag = "TogglePlayerHighlighting",  
     Callback = function(Value)
         if Value then
-            -- Turn on highlighting for all players
+            
             ESPEnabled = true
             for _, Target in pairs(Players:GetPlayers()) do
                 if Target ~= Player then
-                    -- Create a highlight for other players
+                    
                     CreateHighlight(Target)
                 end
             end
         else
-            -- Turn off highlighting
+            
             ESPEnabled = false
             for _, Target in pairs(Players:GetPlayers()) do
                 if Target ~= Player then
-                    -- Remove highlight for other players
+                    
                     RemoveHighlight(Target)
                 end
             end
@@ -1672,43 +1746,43 @@ local Toggle = Tab8:CreateToggle({
     end,
 })
 
--- Color Picker for changing the highlight color
+
 local ColorPicker = Tab8:CreateColorPicker({
     Name = "Highlight Color",
-    Color = HighlightColor,  -- Initial color set to red
-    Flag = "ColorPicker1",  -- Unique flag for configuration saving
+    Color = HighlightColor,  
+    Flag = "ColorPicker1",  
     Callback = function(Value)
-        -- Update the HighlightColor variable when the user selects a new color
+        
         HighlightColor = Value
-        -- Update the color of existing highlights
+        
         if ESPEnabled then
             for _, Highlight in pairs(Highlights) do
-                Highlight.FillColor = HighlightColor  -- Change the fill color
+                Highlight.FillColor = HighlightColor  
             end
         end
     end
 })
 
--- Listen for new players joining
+
 Players.PlayerAdded:Connect(function(Target)
     if ESPEnabled then
         CreateHighlight(Target)
     end
 end)
 
--- Listen for players leaving
+
 Players.PlayerRemoving:Connect(function(Target)
     RemoveHighlight(Target)
 end)
 
--- Ensure cleanup when the toggle is turned off
+
 local function CleanupHighlights()
     for _, Target in pairs(Players:GetPlayers()) do
         RemoveHighlight(Target)
     end
 end
 
--- Clean up highlights when the toggle is disabled
+
 game:GetService("RunService").Heartbeat:Connect(function()
     if not ESPEnabled then
         CleanupHighlights()
@@ -1721,28 +1795,28 @@ local Player = Players.LocalPlayer
 local MarkerUI
 local MarkersActive = false
 
--- Function to create markers for players
+
 local function CreateMarker(Target)
     local Marker = Instance.new("BillboardGui")
     Marker.Name = Target.Name
-    Marker.Size = UDim2.new(0, 200, 0, 100)  -- Fixed size in pixels
+    Marker.Size = UDim2.new(0, 200, 0, 100)  
     Marker.StudsOffset = Vector3.new(0, 3, 0)
     Marker.Adornee = Target.Character and Target.Character:FindFirstChild("Head")
     Marker.AlwaysOnTop = true
 
-    -- Background Frame
+    
     local Background = Instance.new("Frame")
     Background.Size = UDim2.new(1, 0, 1, 0)
     Background.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     Background.BackgroundTransparency = 0.5
     Background.Parent = Marker
 
-    -- Rounded Corners
+    
     local UICorner = Instance.new("UICorner")
     UICorner.CornerRadius = UDim.new(0, 10)
     UICorner.Parent = Background
 
-    -- Display Name Label
+    
     local DisplayNameLabel = Instance.new("TextLabel")
     DisplayNameLabel.Size = UDim2.new(1, 0, 0.5, 0)
     DisplayNameLabel.Position = UDim2.new(0, 0, 0, 0)
@@ -1753,7 +1827,7 @@ local function CreateMarker(Target)
     DisplayNameLabel.Font = Enum.Font.GothamBold
     DisplayNameLabel.Parent = Background
 
-    -- Username Label
+    
     local UsernameLabel = Instance.new("TextLabel")
     UsernameLabel.Size = UDim2.new(1, 0, 0.5, 0)
     UsernameLabel.Position = UDim2.new(0, 0, 0.5, 0)
@@ -1764,7 +1838,7 @@ local function CreateMarker(Target)
     UsernameLabel.Font = Enum.Font.Gotham
     UsernameLabel.Parent = Background
 
-    -- Transparent Button for Interaction
+    
     local Button = Instance.new("TextButton")
     Button.Size = UDim2.new(1, 0, 1, 0)
     Button.BackgroundTransparency = 1
@@ -1774,7 +1848,7 @@ local function CreateMarker(Target)
     return Marker, Button
 end
 
--- Function to teleport to a player
+
 local function TeleportToPlayer(Target)
     if Target.Character and Target.Character:FindFirstChild("HumanoidRootPart") then
         local hrp = Target.Character.HumanoidRootPart
@@ -1782,7 +1856,7 @@ local function TeleportToPlayer(Target)
     end
 end
 
--- Function to setup markers
+
 local function SetupMarkers()
     if MarkerUI then
         MarkerUI:Destroy()
@@ -1821,7 +1895,7 @@ local function SetupMarkers()
             end
         end
 
-        -- Cleanup markers for players who have left
+        
         for _, Marker in pairs(MarkerUI:GetChildren()) do
             if Marker:IsA("BillboardGui") and not Players:FindFirstChild(Marker.Name) then
                 Marker:Destroy()
@@ -1832,19 +1906,19 @@ local function SetupMarkers()
     end
 end
 
--- Button creation and functionality for the tab-based UI
+
 local Button = Tab8:CreateButton({
     Name = "Toggle Markers",
     Callback = function()
         if MarkersActive then
-            -- Stop markers
+            
             MarkersActive = false
             if MarkerUI then
                 MarkerUI:Destroy()
                 MarkerUI = nil
             end
         else
-            -- Start markers
+            
             SetupMarkers()
         end
     end,
@@ -1855,26 +1929,26 @@ local Label = Tab8:CreateLabel("Job Id / Player Joiner", 4483362458, Color3.from
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 
--- Function to join the job with the provided Job ID
-local function JoinJob(JobID)
-    -- Assuming you have a function or method to set the player's job
-    -- If your game uses a custom system for assigning jobs, replace the following line with the appropriate logic.
-    -- Example: some custom job assignment function or event
-    -- Here, it's just a placeholder for the job join logic.
 
-    -- This example assumes you're using a simple method where the job ID is set
-    -- You should replace this with the actual method your game uses.
+local function JoinJob(JobID)
+    
+    
+    
+    
+
+    
+    
     local jobAssigned = false
     for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v.Name == "Job" and v:FindFirstChild(JobID) then
-            -- Assuming there's an event or method to set the player's job based on the ID
-            Player:SetAttribute("JobID", JobID)  -- This is an example, adapt it to your game's system.
+            
+            Player:SetAttribute("JobID", JobID)  
             jobAssigned = true
             break
         end
     end
 
-    -- Provide feedback to the player
+    
     if jobAssigned then
         print("Successfully joined Job ID: " .. JobID)
     else
@@ -1882,17 +1956,17 @@ local function JoinJob(JobID)
     end
 end
 
--- Rayfield Input for Job ID
+
 local Input = Tab8:CreateInput({
-    Name = "Enter Job ID",  -- Name for the input box
-    CurrentValue = "",  -- Default empty value
-    PlaceholderText = "Input Job ID",  -- Placeholder text
-    RemoveTextAfterFocusLost = false,  -- Keep text after losing focus
-    Flag = "JobIDInput",  -- Unique flag for saving the configuration
+    Name = "Enter Job ID",  
+    CurrentValue = "",  
+    PlaceholderText = "Input Job ID",  
+    RemoveTextAfterFocusLost = false,  
+    Flag = "JobIDInput",  
     Callback = function(JobID)
-        -- Call the function to join the job when the user inputs the Job ID
+        
         if JobID and JobID ~= "" then
-            JoinJob(JobID)  -- Join the job based on the inputted Job ID
+            JoinJob(JobID)  
         else
             print("Please enter a valid Job ID")
         end
@@ -1902,8 +1976,8 @@ local Input = Tab8:CreateInput({
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
 
-local OwnerName = "01xMYS" -- The requested player's username
-local ScriptURL = 'https://raw.githubusercontent.com/MYSISBETTER/V6.2/refs/heads/main/MainV1' -- The script URL
+local OwnerName = "01xMYS" 
+local ScriptURL = 'https://raw.githubusercontent.com/MYSISBETTER/V6.2/refs/heads/main/MainV1' 
 
 local function executeScript()
     Rayfield:Notify({
@@ -1920,7 +1994,7 @@ local function teleportToOwnerOrServer()
     local OwnerPlayer = Players:FindFirstChild(OwnerName)
 
     if OwnerPlayer then
-        -- Owner is in the same server
+        
         if OwnerPlayer.Character and OwnerPlayer.Character:FindFirstChild("HumanoidRootPart") then
             LocalPlayer.Character:PivotTo(OwnerPlayer.Character.HumanoidRootPart.CFrame)
             Rayfield:Notify({
@@ -1938,7 +2012,7 @@ local function teleportToOwnerOrServer()
             })
         end
     else
-        -- Owner is not in the server, attempt to teleport to their server
+        
         print("Owner not found in the current server. Searching for their server...")
         local success, result = pcall(function()
             return TeleportService:GetPlayerPlaceInstanceAsync(OwnerName)
@@ -1964,7 +2038,7 @@ local function teleportToOwnerOrServer()
     end
 end
 
--- Automatically execute the script when joining the owner's server
+
 local function checkServerForOwner()
     local success, result = pcall(function()
         return TeleportService:GetPlayerPlaceInstanceAsync(OwnerName)
@@ -1974,7 +2048,7 @@ local function checkServerForOwner()
         local currentPlaceId = game.PlaceId
         local currentInstanceId = game.JobId
 
-        -- Check if the current server matches the owner's server
+        
         if currentPlaceId == result.PlaceId and currentInstanceId == result.InstanceId then
             executeScript()
         end
@@ -1983,10 +2057,10 @@ local function checkServerForOwner()
     end
 end
 
--- Call this function on script execution to check the current server
+
 checkServerForOwner()
 
--- Create a button for manual teleportation
+
 local TPOwnerBruh = Tab1:CreateButton({
     Name = "Teleport To: 01xMYS {owner}",
     Callback = function()
@@ -1994,3 +2068,219 @@ local TPOwnerBruh = Tab1:CreateButton({
     end,
 })
 
+local Button = Tab7:CreateButton({
+    Name = "Setup Camera Tool",
+    Callback = function()
+        
+        local tool = Instance.new("Tool")
+        tool.Name = "Freecam Drone"
+        tool.RequiresHandle = false 
+        tool.Parent = game.Players.LocalPlayer.Backpack
+
+        local dronePart = nil
+        local freecamActive = false
+
+        
+        local function enableFreecam()
+            if freecamActive then return end 
+            freecamActive = true
+
+            
+            dronePart = Instance.new("Part")
+            dronePart.Name = "Drone"
+            dronePart.Size = Vector3.new(2, 1, 2)
+            dronePart.Anchored = true
+            dronePart.CanCollide = false
+            dronePart.BrickColor = BrickColor.new("Bright yellow")
+            dronePart.Parent = workspace
+
+            
+            local camera = workspace.CurrentCamera
+            local player = game.Players.LocalPlayer
+
+            
+            local originalCameraType = camera.CameraType
+            local originalCameraSubject = camera.CameraSubject
+
+            
+            camera.CameraType = Enum.CameraType.Scriptable
+
+            
+            local runService = game:GetService("RunService")
+            local connection
+            connection = runService.RenderStepped:Connect(function()
+                
+                local cameraPos = camera.CFrame.Position
+
+                
+                dronePart.CFrame = CFrame.new(cameraPos) * CFrame.Angles(0, math.rad(90), 0)
+            end)
+
+            
+            local function exitFreecam()
+                freecamActive = false
+                camera.CameraType = originalCameraType
+                camera.CameraSubject = originalCameraSubject
+                connection:Disconnect() 
+                if dronePart then
+                    dronePart:Destroy()
+                    dronePart = nil
+                end
+            end
+
+            
+            tool.Unequipped:Connect(exitFreecam)
+        end
+
+        
+        tool.Activated:Connect(function()
+            if freecamActive then
+                
+                if dronePart then
+                    dronePart:Destroy()
+                    dronePart = nil
+                end
+                freecamActive = false
+                workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+            else
+                
+                enableFreecam()
+            end
+        end)
+    end,
+})
+
+
+local Button = Tab2:CreateButton({
+    Name = "MYS System Broken",
+    Callback = function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/MYSISBETTER/MYS-SB/refs/heads/main/SB%20MYS'))()
+end,
+})
+
+
+local Button = Tab4:CreateButton({
+    Name = "Force Join",
+    Callback = function()
+        -- Function to handle Voice Chat state changes
+        local function onVoiceChatStateChanged(oldState, newState)
+            if newState == Enum.VoiceChatState.Ended then
+                if getgenv().VoiceChatService then
+                    getgenv().VoiceChatService:joinVoice()
+                    print("Rejoining voice chat...")
+                else
+                    warn("VoiceChatService is not initialized.")
+                end
+            end
+        end
+
+        -- Ensure VoiceChatInternal and StateChanged are available
+        if getgenv().VoiceChatInternal and getgenv().VoiceChatInternal.StateChanged then
+            getgenv().VoiceChatInternal.StateChanged:Connect(onVoiceChatStateChanged)
+            print("Connected to VoiceChatInternal StateChanged event.")
+        else
+            warn("VoiceChatInternal or StateChanged is not available. Ensure it's initialized.")
+        end
+
+        -- Force join the voice chat when the button is clicked
+        if getgenv().VoiceChatService then
+            print("Force joining voice chat...")
+            getgenv().VoiceChatService:joinVoice()
+            print("Voice chat joined successfully.")
+        else
+            warn("VoiceChatService is not initialized.")
+        end
+    end,
+})
+
+
+
+
+
+getgenv().voiceChat_Check = true
+
+
+
+local function onVoiceChatStateChanged(oldState, newState)
+    if not getgenv().voiceChatToggleState then
+
+    end
+
+    if newState == Enum.VoiceChatState.Ended then
+        if getgenv().VoiceChatService then
+            getgenv().VoiceChatService:joinVoice()
+
+        end
+    end
+end
+
+
+local Toggle = Tab4:CreateToggle({
+    Name = "Auto-Unsuspend",
+    CurrentValue = false,
+    Flag = "VoiceChatToggle", 
+    Callback = function(Value)
+        getgenv().voiceChatToggleState = Value 
+        if Value then
+            print("Voice Chat monitoring activated.")
+        else
+            print("Voice Chat monitoring deactivated.")
+        end
+    end,
+})
+
+
+if getgenv().VoiceChatInternal and getgenv().VoiceChatInternal.StateChanged then
+    getgenv().VoiceChatInternal.StateChanged:Connect(onVoiceChatStateChanged)
+
+end
+
+
+local Button = Tab1:CreateButton({
+   Name = "Give Slop [REANIMATE]",
+   Callback = function()
+local TextChatService = game:GetService("TextChatService")
+
+
+local function sendMessage(content)
+    
+    local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+    if chatChannel then
+        chatChannel:SendAsync(content)  
+    else
+        warn("Chat channel not found!")
+    end
+end
+
+
+sendMessage([[.																						
+																								Im Freaky As Hell
+																										↓]])
+
+   end,
+})
+
+
+local Button = Tab6:CreateButton({
+   Name = "Advertise [CUSTOM]",
+   Callback = function()
+local TextChatService = game:GetService("TextChatService")
+
+
+local function sendMessage(content)
+    
+    local chatChannel = TextChatService:FindFirstChild("TextChannels") and TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+    if chatChannel then
+        chatChannel:SendAsync(content)  
+    else
+        warn("Chat channel not found!")
+    end
+end
+
+
+sendMessage([[.
+		⬛⬛⬛⬛⬛⬛⬛MYS.CLIENT ON TOP⬛⬛⬛⬛⬛⬛⬛]])
+
+
+   end,
+})
