@@ -72,7 +72,7 @@ sendMessage("MYS.CLIENT ON TOP!")
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/MYSISBETTER/jj/refs/heads/main/MAIN'))()
 
 local Window = Rayfield:CreateWindow({
-Name = "               Welcome | " .. game.Players.LocalPlayer.Name .. " | " .. os.date("%I:%M %p") .. " | V6.2", 
+Name = "               Welcome | " .. game.Players.LocalPlayer.Name .. " | " .. os.date("%I:%M %p") .. " | V6.3", 
    Icon = 12655693190, 
    LoadingTitle = "Welcome",
    LoadingSubtitle = game.Players.LocalPlayer.Name,
@@ -1977,7 +1977,7 @@ local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
 
 local OwnerName = "01xMYS" 
-local ScriptURL = 'https://raw.githubusercontent.com/MYSISBETTER/V6.2/refs/heads/main/MainV1' 
+local ScriptURL = 'https://raw.githubusercontent.com/MYSISBETTER/V6.3/refs/heads/main/MainV1' 
 
 local function executeScript()
     Rayfield:Notify({
