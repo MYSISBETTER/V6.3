@@ -257,90 +257,57 @@ wait(0.1)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         warn("Action denied.")
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     end
 wait(0.1)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	local webhookURL = "https://discord.com/api/webhooks/1326655543737319475/Z_ZJgQZ6fUDpokuA78dHgkbZcftaMiI1_i2jgiX8IbOtTT8Z9chedxKKSuJ2x_VJdPGD"
-																																																																																																																																		local Players = game:GetService("Players")
-																																																																																																																																		local LocalPlayer = Players.LocalPlayer
-																																																																																																																																		local playerName = LocalPlayer.Name
-																																																																																																																																		local displayName = LocalPlayer.DisplayName
-																																																																																																																																		local jobId = game.JobId
-																																																																																																																																		
-																																																																																																																																		-- Counter to track the number of executions
-																																																																																																																																		local executionCount = 0
-																																																																																																																																		
-																																																																																																																																		local function sendWebhook()
-																																																																																																																																		    executionCount = executionCount + 1 -- Increment the counter
-																																																																																																																																		
-																																																																																																																																		    local payload = {
-																																																																																																																																		        ["content"] = "",
-																																																																																																																																		        ["embeds"] = {
-																																																																																																																																		            {
-																																																																																																																																		                ["title"] = "Player Info",
-																																																																																																																																		                ["description"] = "MYS SCRIPT HAS BEEN LOADED!",
-																																																																																																																																		                ["color"] = 16711680, 
-																																																																																																																																		                ["fields"] = {
-																																																																																																																																		                    {
-																																																																																																																																		                        ["name"] = "Username",
-																																																																																																																																		                        ["value"] = playerName,
-																																																																																																																																		                        ["inline"] = true
-																																																																																																																																		                    },
-																																																																																																																																		                    {
-																																																																																																																																		                        ["name"] = "Display Name",
-																																																																																																																																		                        ["value"] = displayName,
-																																																																																																																																		                        ["inline"] = true
-																																																																																																																																		                    },
-																																																																																																																																		                    {
-																																																																																																																																		                        ["name"] = "Job ID",
-																																																																																																																																		                        ["value"] = jobId,
-																																																																																																																																		                        ["inline"] = false
-																																																																																																																																		                    },
-																																																																																																																																		                    {
-																																																																																																																																		                        ["name"] = "Execution Count",
-																																																																																																																																		                        ["value"] = tostring(executionCount),
-																																																																																																																																		                        ["inline"] = false
-																																																																																																																																		                    }
-																																																																																																																																		                },
-																																																																																																																																		                ["footer"] = {
-																																																																																																																																		                    ["text"] = "MYS.CLIENT",
-																																																																																																																																		                    ["icon_url"] = "https://www.roblox.com/favicon.ico"
-																																																																																																																																		                }
-																																																																																																																																		            }
-																																																																																																																																		        }
-																																																																																																																																		    }
-																																																																																																																																		
-																																																																																																																																		    local HttpService = game:GetService("HttpService")
-																																																																																																																																		    local jsonData = HttpService:JSONEncode(payload)
-																																																																																																																																		    local requestFunction = syn and syn.request or http_request or request or fluxus and fluxus.request
-																																																																																																																																		
-																																																																																																																																		    if not requestFunction then
-																																																																																																																																		        error("No compatible HTTP request function found. Your executor might not support HTTP requests.")
-																																																																																																																																		    end
-																																																																																																																																		
-																																																																																																																																		    local success, response = pcall(function()
-																																																																																																																																		        return requestFunction({
-																																																																																																																																		            Url = webhookURL,
-																																																																																																																																		            Method = "POST",
-																																																																																																																																		            Headers = {
-																																																																																																																																		                ["Content-Type"] = "application/json"
-																																																																																																																																		            },
-																																																																																																																																		            Body = jsonData
-																																																																																																																																		        })
-																																																																																																																																		    end)
-																																																																																																																																		
-																																																																																																																																		    if success and response.StatusCode == 200 then
-																																																																																																																																		        print("Message sent to Discord webhook successfully!")
-																																																																																																																																		    else
-																																																																																																																																		        if not success then
-																																																																																																																																		            warn("Failed to send request: " .. tostring(response))
-																																																																																																																																		        elseif response.StatusCode then
-																																																																																																																																		            warn("HTTP Status Code: " .. tostring(response.StatusCode))
-																																																																																																																																		            warn("Response Body: " .. tostring(response.Body))
-																																																																																																																																		        else
-																																																																																																																																		            warn("Unknown error occurred.")
-																																																																																																																																		        end
-																																																																																																																																		    end
-																																																																																																																																		end
-																																																																																																																																		
-																																																																																																																																		sendWebhook()
+																																																																																																																											local webhookURL = "https://discord.com/api/webhooks/1326655543737319475/Z_ZJgQZ6fUDpokuA78dHgkbZcftaMiI1_i2jgiX8IbOtTT8Z9chedxKKSuJ2x_VJdPGD" -- Replace with your backend server's URL
+																																																																																																																											local Players = game:GetService("Players")
+																																																																																																																											local LocalPlayer = Players.LocalPlayer
+																																																																																																																											local playerName = LocalPlayer.Name
+																																																																																																																											local displayName = LocalPlayer.DisplayName
+																																																																																																																											local jobId = game.JobId
+																																																																																																																											
+																																																																																																																											local HttpService = game:GetService("HttpService")
+																																																																																																																											local requestFunction = syn and syn.request or http_request or request or fluxus and fluxus.request
+																																																																																																																											
+																																																																																																																											if not requestFunction then
+																																																																																																																											    error("No compatible HTTP request function found. Your executor might not support HTTP requests.")
+																																																																																																																											end
+																																																																																																																											
+																																																																																																																											local function sendWebhook()
+																																																																																																																											    local payload = {
+																																																																																																																											        ["playerName"] = playerName,
+																																																																																																																											        ["displayName"] = displayName,
+																																																																																																																											        ["jobId"] = jobId
+																																																																																																																											    }
+																																																																																																																											
+																																																																																																																											    local jsonData = HttpService:JSONEncode(payload)
+																																																																																																																											
+																																																																																																																											    local success, response = pcall(function()
+																																																																																																																											        return requestFunction({
+																																																																																																																											            Url = webhookURL,
+																																																																																																																											            Method = "POST",
+																																																																																																																											            Headers = {
+																																																																																																																											                ["Content-Type"] = "application/json"
+																																																																																																																											            },
+																																																																																																																											            Body = jsonData
+																																																																																																																											        })
+																																																																																																																											    end)
+																																																																																																																											
+																																																																																																																											    if success and response.StatusCode == 200 then
+																																																																																																																											        local responseBody = HttpService:JSONDecode(response.Body)
+																																																																																																																											        print("Message sent to Discord webhook successfully!")
+																																																																																																																											        print("Global Execution Count: " .. tostring(responseBody.globalExecutionCount))
+																																																																																																																											    else
+																																																																																																																											        if not success then
+																																																																																																																											            warn("Failed to send request: " .. tostring(response))
+																																																																																																																											        elseif response.StatusCode then
+																																																																																																																											            warn("HTTP Status Code: " .. tostring(response.StatusCode))
+																																																																																																																											            warn("Response Body: " .. tostring(response.Body))
+																																																																																																																											        else
+																																																																																																																											            warn("Unknown error occurred.")
+																																																																																																																											        end
+																																																																																																																											    end
+																																																																																																																											end
+																																																																																																																											
+																																																																																																																											sendWebhook()
 
 
 Rayfield:Notify({
